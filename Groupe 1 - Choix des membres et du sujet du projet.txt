@@ -11,3 +11,6 @@ Après concertation, nous avons choisis le sujet "Bataille Navale"
 
 Cordialement,
 Yoann Lebreton
+
+Si on modifie quelque chose on doit faire :
+Commit (ctrl + k)   ---> pull  (onglet VCS puis "Git" puis "pull...") ---> push (ctrl + Maj + K)
