@@ -1,4 +1,4 @@
-import Vue.Vue;
+import Vue.MainVue;
 
 import javax.swing.*;
 
@@ -16,6 +16,6 @@ public class Main {
     }
 
     public static void createAndShowGUI() throws Exception {
-        new Vue();
+        new MainVue();
     }
 }
