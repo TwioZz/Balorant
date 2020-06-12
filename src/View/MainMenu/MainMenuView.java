@@ -11,6 +11,7 @@ public class MainMenuView extends JPanel implements Observer {
     protected MainMenuModel mainMenuModel;
 
     public MainMenuView(MainMenuModel mainMenuModel) {
+        super();
         this.mainMenuModel = mainMenuModel;
         this.mainMenuModel.addObserver(this);
 
