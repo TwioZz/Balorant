@@ -3,6 +3,7 @@ package View.MainMenu;
 import Models.MainMenuModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -13,6 +14,7 @@ public class MainMenuView extends JPanel implements Observer {
     public MainMenuView(MainMenuModel mainMenuModel) {
         super();
         this.mainMenuModel = mainMenuModel;
+        this.mainMenuModel.setBackgroundColor(new Color(0, 255, 0));
         this.mainMenuModel.addObserver(this);
 
         add(new JLabel("Balorant !"));
