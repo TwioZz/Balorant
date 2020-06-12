@@ -1,5 +1,6 @@
 import Controller.MainMenu.MainMenuController;
 import Models.MainMenuModel;
+import View.MainMenu.MainMenuView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.*;
  *
  *
  * @version 1.1
- * @author Aurélien le lémurien, Valentin le chevrotin, Louis le pingui & Yoyo le motmot
+ * @author Aurélien le lémurien, Valentin le chevrotin, Louis la truie & Yoyo l'escargot
  */
 
 public class Balorant extends JFrame {
@@ -17,8 +18,10 @@ public class Balorant extends JFrame {
     public Balorant() {
         super();
         MainMenuModel mainMenuModel = new MainMenuModel();
+        MainMenuView mainMenuView = new MainMenuView(mainMenuModel);
+        mainMenuView.add(new MainMenuController(mainMenuModel));
 
-        this.add(new MainMenuController(mainMenuModel));
+        this.add(mainMenuView);
     }
 
 
