@@ -16,7 +16,7 @@ public class MainMenuView extends JPanel implements Observer {
         this.mainMenuModel = mainMenuModel;
         this.mainMenuModel.setBackgroundColor(new Color(0, 255, 0));
         this.mainMenuModel.addObserver(this);
-
+        this.mainMenuModel.setBackgroundColor(new Color(255, 0, 0));
         add(new JLabel("Balorant !"));
         this.setBackground(this.mainMenuModel.getBackgroundColor());
     }
