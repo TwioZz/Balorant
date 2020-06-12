@@ -15,12 +15,19 @@ public class MainMenuView extends JPanel implements Observer {
         super();
         this.mainMenuModel = mainMenuModel;
         this.mainMenuModel.addObserver(this);
-        add(new JLabel("Balorant !"));
-        this.setBackground(this.mainMenuModel.getBackgroundColor());
+
+        this.setLayout(new BorderLayout());
+
+        JLabel jLabelTitle = new JLabel("Balorant !");
+        jLabelTitle.setFont(new Font("Serif", Font.BOLD, 48));
+        jLabelTitle.setHorizontalAlignment(JLabel.CENTER);
+        jLabelTitle.setPreferredSize(new Dimension(600, 200));
+
+        add(jLabelTitle, BorderLayout.NORTH);
+        add(new OptionPartie(mainMenuModel), BorderLayout.CENTER);
     }
 
     @Override
     public void update(Observable observable, Object o) {
-        this.setBackground(this.mainMenuModel.getBackgroundColor());
     }
 }

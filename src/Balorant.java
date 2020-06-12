@@ -1,4 +1,3 @@
-import Controller.MainMenu.MainMenuController;
 import Models.MainMenuModel;
 import View.MainMenu.MainMenuView;
 
@@ -19,7 +18,6 @@ public class Balorant extends JFrame {
         super();
         MainMenuModel mainMenuModel = new MainMenuModel();
         MainMenuView mainMenuView = new MainMenuView(mainMenuModel);
-        mainMenuView.add(new MainMenuController(mainMenuModel));
 
         this.add(mainMenuView);
     }
@@ -35,5 +33,6 @@ public class Balorant extends JFrame {
         balorant.setSize(new Dimension(1920,1080));
         balorant.setDefaultCloseOperation(EXIT_ON_CLOSE);
         balorant.setVisible(true);
+        balorant.pack();
     }
 }

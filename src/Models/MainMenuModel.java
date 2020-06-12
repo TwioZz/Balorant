@@ -1,30 +1,27 @@
 package Models;
 
-import java.awt.*;
 import java.util.Observable;
 
 /**
  *  Model du menu pricipal
  */
 public class MainMenuModel extends Observable {
-    private Color backgroundColor;
+    private int nombreDeJoueurHumain;
 
-    public Color getBackgroundColor() {
-        return backgroundColor;
-    }
+    public MainMenuModel() {}
 
     /**
      * Attribue la nouvelle
      *
-     * @param backgroundColor La nouvelle couleur du fond
+     * @param nombreDeJoueurHumain Le nombre de joueur humain
      */
-    public void setBackgroundColor(Color backgroundColor) {
-        this.backgroundColor = backgroundColor;
+    public void setNombreDeJoueurHumain(int nombreDeJoueurHumain) {
+        this.nombreDeJoueurHumain = nombreDeJoueurHumain;
         setChanged();
         notifyObservers();
     }
 
-    public MainMenuModel() {
-        this.backgroundColor = new Color(192, 229, 38);
+    public int getNombreDeJoueurHumain() {
+        return nombreDeJoueurHumain;
     }
 }
