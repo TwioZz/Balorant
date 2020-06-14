@@ -10,7 +10,7 @@ public class PartieView extends JPanel implements Observer {
 
     private Partie partie;
 
-    private PartieView(Partie partie) {
+    public PartieView(Partie partie) {
         this.partie = partie;
         partie.addObserver(this);
     }

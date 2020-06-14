@@ -1,12 +1,12 @@
 package Controller.MainMenu;
 
+import Launcher.Balorant;
 import Models.MainMenuModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 public class ChoiceModeController extends JPanel {
     private MainMenuModel mainMenuModel;
@@ -19,7 +19,7 @@ public class ChoiceModeController extends JPanel {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-
+                        Balorant.lauchBatailleNavale();
                     }
                 }
         );
@@ -29,7 +29,7 @@ public class ChoiceModeController extends JPanel {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-
+//                        Balorant.lauchBatailleNavale();
                     }
                 }
         );
@@ -39,7 +39,7 @@ public class ChoiceModeController extends JPanel {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-
+//                        Balorant.lauchBatailleNavale();
                     }
                 }
         );
@@ -49,7 +49,7 @@ public class ChoiceModeController extends JPanel {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-
+//                        Balorant.lauchBatailleNavale();
                     }
                 }
         );
