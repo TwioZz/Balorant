@@ -1,11 +1,7 @@
 import Launcher.Balorant;
 
 /**
- * Classe principale, qui va exécuter l'application.
- *
- *
- * @version 1.1
- * @author Aurélien le lémurien, Valentin le chevrotin, Louis la truie & Yoyo l'escargot
+ * Classe main d'exécution de l'application.
  */
 
 public class Main {

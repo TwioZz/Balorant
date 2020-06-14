@@ -8,6 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controller de gestion pour les bouttons du choix du mode de jeu
+ *
+ */
 public class ChoiceModeController extends JPanel {
     private MainMenuModel mainMenuModel;
 
@@ -19,7 +23,8 @@ public class ChoiceModeController extends JPanel {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-                        Balorant.lauchBatailleNavale();
+                        int nombreDejoueur = mainMenuModel.getNombreDeJoueurHumain();
+                        Balorant.lauchBatailleNavale(nombreDejoueur);
                     }
                 }
         );
@@ -29,7 +34,7 @@ public class ChoiceModeController extends JPanel {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-//                        Balorant.lauchBatailleNavale();
+//                        Balorant.lauchCodeRouge();
                     }
                 }
         );
@@ -39,7 +44,7 @@ public class ChoiceModeController extends JPanel {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-//                        Balorant.lauchBatailleNavale();
+//                        Balorant.lauchMissionArtillerie();
                     }
                 }
         );
@@ -49,7 +54,7 @@ public class ChoiceModeController extends JPanel {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-//                        Balorant.lauchBatailleNavale();
+//                        Balorant.lauchOpérationRadar();
                     }
                 }
         );

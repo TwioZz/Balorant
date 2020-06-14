@@ -7,6 +7,9 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Menu de l'application Balorant
+ */
 public class MainMenuView extends JPanel implements Observer {
 
     protected MainMenuModel mainMenuModel;

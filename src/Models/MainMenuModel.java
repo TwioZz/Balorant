@@ -11,7 +11,7 @@ public class MainMenuModel extends Observable {
     public MainMenuModel() {}
 
     /**
-     * Attribue la nouvelle
+     * Attribue la nouvelle valeur et notifie la vue
      *
      * @param nombreDeJoueurHumain Le nombre de joueur humain
      */

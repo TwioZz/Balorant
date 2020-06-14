@@ -40,8 +40,10 @@ public class Balorant extends JFrame {
 
     /**
      * Ferme le menu et lance une partie de bataille navale
+     *
+     * @param nombreDejoueur Nombre de joueur humain afin de créer une instance de plateau en fonction
      */
-    public static void lauchBatailleNavale() {
+    public static void lauchBatailleNavale(int nombreDejoueur) {
         mainMenuJframe.dispose();
 
         Balorant balorantBatailleNavale = new Balorant();

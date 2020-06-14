@@ -9,6 +9,11 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
+
+/**
+ * Jpanel contenant les options de la partie (IA, Joueur, Mode de jeu)
+ *
+ */
 public class OptionPartie extends JPanel implements Observer {
 
     private MainMenuModel mainMenuModel;

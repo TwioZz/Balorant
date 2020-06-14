@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controleur de la sélection de joueur humain
+ */
 public class NombreDeJoueurController extends JPanel {
     MainMenuModel mainMenuModel;
 
