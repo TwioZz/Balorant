@@ -1,22 +1,26 @@
 package Models;
 
-public class Case {
-    private boolean etat;
+import java.util.Observable;
+
+public class Case extends Observable {
+    private boolean touchee;
     private int x;
     private int y;
 
-    public Case(boolean etat, int x, int y) {
-        this.etat = etat;
+    public Case(boolean touchee, int x, int y) {
+        this.touchee = touchee;
         this.x = x;
         this.y = y;
     }
 
-    public boolean isEtat() {
-        return etat;
+    public boolean isTouchee() {
+        return touchee;
     }
 
-    public void setEtat(boolean etat) {
-        this.etat = etat;
+    public void setTouchee(boolean touchee) {
+        this.touchee = touchee;
+        setChanged();
+        notifyObservers();
     }
 
     public int getX() {

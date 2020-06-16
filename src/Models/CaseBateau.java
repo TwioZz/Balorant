@@ -2,7 +2,10 @@ package Models;
 
 public class CaseBateau extends Case {
 
-    public CaseBateau(boolean etat, int x, int y) {
-        super(etat, x, y);
+    /**
+     * Instanciation d'une case bateau temporaire lors de la création
+     */
+    public CaseBateau() {
+        super(false, -1, -1);
     }
 }

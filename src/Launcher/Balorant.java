@@ -53,6 +53,7 @@ public class Balorant extends JFrame {
         balorantBatailleNavale.add(partieView);
         balorantBatailleNavale.setDefaultCloseOperation(EXIT_ON_CLOSE);
         balorantBatailleNavale.setVisible(true);
+        balorantBatailleNavale.setResizable(false);
         balorantBatailleNavale.pack();
 
         inGameJframe = balorantBatailleNavale;

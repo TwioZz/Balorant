@@ -1,15 +1,19 @@
 package Models;
 
+import Models.Array.LimitedArrayList;
+
 import java.util.ArrayList;
 import java.util.Observable;
 
 public class Partie extends Observable {
-    private ArrayList<Plateau> plateaux;
+    private LimitedArrayList<Plateau> plateaux;
+    private int tour;
 
     public Partie() {
+        this.tour = 1;
+        this.plateaux = new LimitedArrayList<>(2);
         Plateau plateau1 = new Plateau();
         Plateau plateau2 = new Plateau();
-        this.plateaux = new ArrayList<>();
         this.plateaux.add(plateau1);
         this.plateaux.add(plateau2);
     }
@@ -18,7 +22,13 @@ public class Partie extends Observable {
         return plateaux;
     }
 
-    public void setPlateaux(ArrayList<Plateau> plateaux) {
-        this.plateaux = plateaux;
+    public int getTour() {
+        return tour;
+    }
+
+    public void nextTour() {
+        this.tour = this.tour + 1;
+        setChanged();
+        notifyObservers();
     }
 }
