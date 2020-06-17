@@ -60,6 +60,7 @@ public class PlacementBateauView extends JPanel implements Observer {
             CasePlacementBateau casePlacementBateau = new CasePlacementBateau(aCase, plateau, placementBateau);
             jPanelGridPlacementBateau.add(casePlacementBateau);
         }
+        jPanelGridPlacementBateau.updateUI();
 
         try {
             jLabelProchainBateau.setText(plateau.prochainBateauAPlacer().toString());

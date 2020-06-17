@@ -6,6 +6,7 @@ import View.MainMenu.MainMenuView;
 import View.Partie.PartieView;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 /**
@@ -53,8 +54,7 @@ public class Balorant extends JFrame {
         balorantBatailleNavale.add(partieView);
         balorantBatailleNavale.setDefaultCloseOperation(EXIT_ON_CLOSE);
         balorantBatailleNavale.setVisible(true);
-        balorantBatailleNavale.setResizable(false);
-        balorantBatailleNavale.pack();
+        balorantBatailleNavale.setSize(new Dimension(1920, 1080));
 
         inGameJframe = balorantBatailleNavale;
     }

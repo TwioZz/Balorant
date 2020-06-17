@@ -21,6 +21,11 @@ public abstract class Navire {
     public boolean isCoule() {
         boolean isCoule = true;
 
+        // Un bateau non placé est automatiquement coulé
+        if (!place) {
+            return true;
+        }
+
         // Dès que la boucle croise une case non touchée, le bateau n'est donc pas coulé
         for (CaseBateau caseBateau: structure) {
             if (!caseBateau.isTouchee()) {

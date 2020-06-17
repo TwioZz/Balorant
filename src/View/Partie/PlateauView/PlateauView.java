@@ -1,6 +1,7 @@
 package View.Partie.PlateauView;
 
 import Models.Case;
+import Models.Partie;
 import Models.Plateau;
 import View.Partie.PlateauView.CaseView.CaseView;
 
@@ -13,7 +14,7 @@ import java.util.Observer;
 public class PlateauView extends JPanel implements Observer {
     private Plateau plateau;
 
-    public PlateauView(Plateau plateau, boolean plateauAllie) {
+    public PlateauView(Plateau plateau, Partie partie, boolean plateauAllie) {
         this.plateau = plateau;
         this.plateau.addObserver(this);
         Border blackBorder = BorderFactory.createLineBorder(Color.black);
@@ -23,7 +24,7 @@ public class PlateauView extends JPanel implements Observer {
         setLayout(new GridLayout(10, 10));
 
         for (Case aCase: this.plateau.getCases()) {
-            CaseView caseView = new CaseView(aCase, plateauAllie);
+            CaseView caseView = new CaseView(aCase, partie, plateau, plateauAllie);
             add(caseView);
         }
     }

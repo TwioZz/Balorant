@@ -1,7 +1,6 @@
 package Controller.Partie.Plateau.Case;
 
 import Models.*;
-import Models.Navire.Navire;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +22,7 @@ public class CasePlacementBateauController extends JPanel {
         jButtonCase.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                plateau.placementDuNavire(plateau.prochainBateauAPlacer(), aCase);
+                plateau.placementDuNavire(plateau.prochainBateauAPlacer(), aCase, placementBateau.getPlacement());
             }
         });
 
@@ -34,22 +33,40 @@ public class CasePlacementBateauController extends JPanel {
             jButtonCase.setEnabled(false);
         }
 
-        // Désactivation du boutton quand le bateau ne peut pas etre placé à cause de la bordure
-        int tailleBateauAPlacer = plateau.prochainBateauAPlacer().getStructure().size();
-        if (this.placementBateau.getPlacement().equals(Constants.PLACEMENT_HORIZONTAL)) {
-            if (!(aCase.getX() <= tailleBateauAPlacer)) {
-                jButtonCase.setEnabled(false);
+        // Désactivation du boutton quand le bateau ne peut pas etre placé à cause de la bordure ou d'un autre bateau
+        if (plateau.prochainBateauAPlacer() != null) {
+            int tailleBateauAPlacer = plateau.prochainBateauAPlacer().getStructure().size();
+            if (this.placementBateau.getPlacement().equals(Constants.PLACEMENT_HORIZONTAL)) {
+                if (aCase.getX() > 10 - tailleBateauAPlacer) {
+                    jButtonCase.setEnabled(false);
+                }
+            } else if (this.placementBateau.getPlacement().equals(Constants.PLACEMENT_VERTICAL)) {
+                if (aCase.getY() > 10 - tailleBateauAPlacer) {
+                    jButtonCase.setEnabled(false);
+                }
             }
-        } else if (this.placementBateau.getPlacement().equals(Constants.PLACEMENT_VERTICAL)) {
-            if (!(aCase.getY() <= tailleBateauAPlacer)) {
-                jButtonCase.setEnabled(false);
+
+            for (CaseBateau caseBateau: plateau.getCasesBateau()) {
+                if (this.placementBateau.getPlacement().equals(Constants.PLACEMENT_HORIZONTAL)) {
+                    if (aCase.getX() > caseBateau.getX() - tailleBateauAPlacer && aCase.getX() < caseBateau.getX() && aCase.getY() == caseBateau.getY()) {
+                        jButtonCase.setEnabled(false);
+                    }
+                } else if (this.placementBateau.getPlacement().equals(Constants.PLACEMENT_VERTICAL)) {
+                    if (aCase.getY() > caseBateau.getY() - tailleBateauAPlacer && aCase.getY() < caseBateau.getY() && aCase.getX() == caseBateau.getX()) {
+                        jButtonCase.setEnabled(false);
+                    }
+                }
             }
         }
 
+        // Choix de la couleur en fonction de l'etat de la case
         if (aCase instanceof CaseBateau) {
             jButtonCase.setBackground(Color.GRAY);
+            jButtonCase.setEnabled(false);
+        } else if (!jButtonCase.isEnabled()) {
+            jButtonCase.setBackground(new Color(118, 6, 6));
         } else {
-            jButtonCase.setBackground(Color.BLUE);
+            jButtonCase.setBackground(new Color(2, 29, 121));
         }
 
         add(jButtonCase, BorderLayout.CENTER);

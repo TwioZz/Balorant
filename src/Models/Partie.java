@@ -12,8 +12,8 @@ public class Partie extends Observable {
     public Partie() {
         this.tour = 1;
         this.plateaux = new LimitedArrayList<>(2);
-        Plateau plateau1 = new Plateau();
-        Plateau plateau2 = new Plateau();
+        Plateau plateau1 = new Plateau(new Joueur("Joueur 1"));
+        Plateau plateau2 = new Plateau(new Joueur("Joueur 2"));
         this.plateaux.add(plateau1);
         this.plateaux.add(plateau2);
     }
@@ -30,5 +30,18 @@ public class Partie extends Observable {
         this.tour = this.tour + 1;
         setChanged();
         notifyObservers();
+    }
+
+    public boolean isPartieTerminee() {
+        return this.plateaux.get(0).isAllBateauCoule() || this.plateaux.get(1).isAllBateauCoule();
+    }
+
+    public Joueur getJoueurGagnant() {
+        if (this.plateaux.get(0).isAllBateauCoule()) {
+            return this.plateaux.get(1).getControlledBy();
+        } else if (this.plateaux.get(1).isAllBateauCoule()) {
+            return this.plateaux.get(0).getControlledBy();
+        }
+        return null;
     }
 }

@@ -3,6 +3,7 @@ package Models;
 import Models.Array.LimitedArrayList;
 import Models.Navire.*;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 public class Plateau extends Observable {
@@ -10,7 +11,7 @@ public class Plateau extends Observable {
     private Joueur controlledBy;
     private LimitedArrayList<Navire> navires;
 
-    public Plateau() {
+    public Plateau(Joueur joueur) {
         this.cases = new LimitedArrayList<Case>(100);
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -24,6 +25,8 @@ public class Plateau extends Observable {
         this.navires.add(new Cuirasse("Cuirassé 1"));
         this.navires.add(new Cuirasse("Cuirassé 2"));
         this.navires.add(new Zodiac("Zodiac"));
+
+        this.controlledBy = joueur;
     }
 
     public LimitedArrayList<Case> getCases() {
@@ -61,11 +64,20 @@ public class Plateau extends Observable {
         return getCaseAtCoord(aCase.getX() + 1, aCase.getY());
     }
 
-    public void placementDuNavire(Navire navire, Case firstCaseToRemplace) {
+    public Case getNextVerticallyCase(Case aCase) {
+        return getCaseAtCoord(aCase.getX(), aCase.getY() + 1);
+    }
+
+    public void placementDuNavire(Navire navire, Case firstCaseToRemplace, String alignement) {
         Case tempCase = firstCaseToRemplace;
         for (CaseBateau caseBateau: navire.getStructure()) {
             remplacementCasePourCaseBateau(caseBateau, tempCase);
-            tempCase = getNextHorizontallyCase(tempCase);
+            if (alignement.equals(Constants.PLACEMENT_HORIZONTAL)) {
+                tempCase = getNextHorizontallyCase(tempCase);
+            }
+            else if (alignement.equals(Constants.PLACEMENT_VERTICAL)) {
+                tempCase = getNextVerticallyCase(tempCase);
+            }
         }
         navire.setPlace(true);
 
@@ -80,5 +92,43 @@ public class Plateau extends Observable {
         caseBateau.setX(aCase.getX());
         caseBateau.setY(aCase.getY());
         this.cases.add(index, caseBateau);
+    }
+
+    public ArrayList<CaseBateau> getCasesBateau() {
+        ArrayList<CaseBateau> casesBateau = new ArrayList<>();
+        for (Case aCase: this.cases) {
+            if (aCase instanceof CaseBateau) {
+                casesBateau.add((CaseBateau) aCase);
+            }
+        }
+
+        return casesBateau;
+    }
+
+    public Joueur getControlledBy() {
+        return controlledBy;
+    }
+
+    public ArrayList<CaseBateau> getBateauCoule() {
+        ArrayList<CaseBateau> casesBateauCoule = new ArrayList<>();
+        for (Navire navire: this.navires) {
+            if (navire.isCoule()) {
+                casesBateauCoule.addAll(navire.getStructure());
+            }
+        }
+
+        return casesBateauCoule;
+    }
+
+    public boolean isAllBateauCoule() {
+        boolean allBateauCoule = true;
+
+        for (Navire navire: this.navires) {
+            if (!navire.isCoule()) {
+                allBateauCoule = false;
+            }
+        }
+
+        return allBateauCoule;
     }
 }
