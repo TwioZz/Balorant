@@ -3,6 +3,7 @@ package View.Partie.PlateauView.CaseView;
 import Controller.Partie.Plateau.Case.CasePlacementBateauController;
 import Models.Case;
 import Models.CaseBateau;
+import Models.PlacementBateau;
 import Models.Plateau;
 
 import javax.swing.*;
@@ -14,14 +15,14 @@ public class CasePlacementBateau extends JPanel implements Observer {
     private Case aCase; // case is a reserved word
     private Plateau plateau;
 
-    public CasePlacementBateau(Case aCase, Plateau plateau) {
+    public CasePlacementBateau(Case aCase, Plateau plateau, PlacementBateau placementBateau) {
         this.plateau = plateau;
         this.aCase = aCase;
         this.aCase.addObserver(this);
         setBorder(BorderFactory.createLineBorder(Color.black));
         setLayout(new BorderLayout());
 
-        CasePlacementBateauController casePlacementBateauController = new CasePlacementBateauController(aCase, plateau);
+        CasePlacementBateauController casePlacementBateauController = new CasePlacementBateauController(aCase, plateau, placementBateau);
         add(casePlacementBateauController, BorderLayout.CENTER);
     }
 

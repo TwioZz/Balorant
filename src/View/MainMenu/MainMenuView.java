@@ -1,5 +1,6 @@
 package View.MainMenu;
 
+import Models.Constants;
 import Models.MainMenuModel;
 
 import javax.swing.*;
@@ -22,7 +23,7 @@ public class MainMenuView extends JPanel implements Observer {
         this.setLayout(new BorderLayout());
 
         JLabel jLabelTitle = new JLabel("Balorant !");
-        jLabelTitle.setFont(new Font("Serif", Font.BOLD, 48));
+        jLabelTitle.setFont(Constants.MAIN_TITLE_FONT);
         jLabelTitle.setHorizontalAlignment(JLabel.CENTER);
         jLabelTitle.setPreferredSize(new Dimension(600, 200));
 

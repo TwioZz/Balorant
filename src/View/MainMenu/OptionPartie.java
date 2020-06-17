@@ -2,6 +2,7 @@ package View.MainMenu;
 
 import Controller.MainMenu.ChoiceModeController;
 import Controller.MainMenu.NombreDeJoueurController;
+import Models.Constants;
 import Models.MainMenuModel;
 
 import javax.swing.*;
@@ -25,13 +26,13 @@ public class OptionPartie extends JPanel implements Observer {
         this.setLayout(new GridLayout(2, 2));
 
         JLabel jLabelChoiceJoueur = new JLabel("Qui doit s'affronter : ");
-        jLabelChoiceJoueur.setFont(new Font("Serif", Font.PLAIN, 24));
+        jLabelChoiceJoueur.setFont(Constants.MAIN_FONT);
         jLabelChoiceJoueur.setHorizontalAlignment(JLabel.CENTER);
         this.add(jLabelChoiceJoueur);
         this.add(new NombreDeJoueurController(mainMenuModel));
 
         JLabel jLabelChoiceMode = new JLabel("Choisissez un mode :");
-        jLabelChoiceMode.setFont(new Font("Serif", Font.PLAIN, 24));
+        jLabelChoiceMode.setFont(Constants.MAIN_FONT);
         jLabelChoiceMode.setHorizontalAlignment(JLabel.CENTER);
         this.add(jLabelChoiceMode);
         this.add(new ChoiceModeController(mainMenuModel));

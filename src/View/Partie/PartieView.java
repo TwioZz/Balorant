@@ -1,6 +1,8 @@
 package View.Partie;
 
+import Models.Constants;
 import Models.Partie;
+import Models.PlacementBateau;
 import View.Partie.PlateauView.PlacementBateauView;
 import View.Partie.PlateauView.PlateauView;
 
@@ -19,9 +21,12 @@ public class PartieView extends JPanel implements Observer {
         setLayout(new BorderLayout());
 
         JLabel jLabelTir = new JLabel("Placement des bateaux");
+        jLabelTir.setFont(Constants.MAIN_TITLE_FONT);
+        jLabelTir.setHorizontalAlignment(SwingConstants.CENTER);
         add(jLabelTir, BorderLayout.NORTH);
 
-        PlacementBateauView placementBateauView = new PlacementBateauView(partie.getPlateaux().get(0));
+        PlacementBateau placementBateau = new PlacementBateau();
+        PlacementBateauView placementBateauView = new PlacementBateauView(partie.getPlateaux().get(0), placementBateau);
         add(placementBateauView, BorderLayout.CENTER);
     }
 
@@ -29,7 +34,8 @@ public class PartieView extends JPanel implements Observer {
     public void update(Observable observable, Object o) {
         removeAll();
         if (partie.getTour() < 3) {
-            PlacementBateauView placementBateauView = new PlacementBateauView(partie.getPlateaux().get(1));
+            PlacementBateau placementBateau = new PlacementBateau();
+            PlacementBateauView placementBateauView = new PlacementBateauView(partie.getPlateaux().get(1), placementBateau);
             add(placementBateauView, BorderLayout.CENTER);
         } else {
             PlateauView plateauViewEnemie = new PlateauView(partie.getPlateaux().get(0), false);
