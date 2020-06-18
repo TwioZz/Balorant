@@ -52,9 +52,9 @@ public class Balorant extends JFrame {
 
         Partie partie = null;
         if (parameterMode.equals(Constants.MISSION_RADAR)) {
-            partie = new BatailleNavale();
-        } else if (parameterMode.equals(Constants.OPERATION_ARTILLERIE)) {
             partie = new MissionRadar();
+        } else if (parameterMode.equals(Constants.OPERATION_ARTILLERIE)) {
+            partie = new OperationArtillerie();
         } else if (parameterMode.equals(Constants.ALERTE_ROUGE)) {
             partie = new AlerteRouge();
         } else {
