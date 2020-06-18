@@ -16,6 +16,10 @@ import java.awt.event.ActionListener;
 public class ChoiceModeController extends JPanel {
     private MainMenuModel mainMenuModel;
 
+    /**
+     *  
+     * @param mainMenuModel coix du mode de jeu
+     */
     public ChoiceModeController(MainMenuModel mainMenuModel) {
         this.mainMenuModel = mainMenuModel;
 
