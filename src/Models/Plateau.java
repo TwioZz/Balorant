@@ -63,14 +63,30 @@ public class Plateau extends Observable {
         return null;
     }
 
+    /**
+     * Récupère la prochaine case horizontale pour le placement du bateau
+     * @param aCase un objet de la classe Case
+     * @return la prochaine case horizontale
+     */
     public Case getNextHorizontallyCase(Case aCase) {
         return getCaseAtCoord(aCase.getX() + 1, aCase.getY());
     }
 
+    /**
+     * Récupère la prochaine case verticale pour le placement du bateau
+     * @param aCase un objet de la classe Case
+     * @return la prochaine case verticale
+     */
     public Case getNextVerticallyCase(Case aCase) {
         return getCaseAtCoord(aCase.getX(), aCase.getY() + 1);
     }
 
+    /**
+     * Place le bateau horizontalement ou verticalement
+     * @param navire un objet de la classe Navire
+     * @param firstCaseToRemplace un objet de la classe Case
+     * @param alignement une variable contenant "Horizontal" ou "Vertical"
+     */
     public void placementDuNavire(Navire navire, Case firstCaseToRemplace, String alignement) {
         Case tempCase = firstCaseToRemplace;
         for (CaseBateau caseBateau: navire.getStructure()) {
@@ -88,6 +104,11 @@ public class Plateau extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Remplace une case du plateau par une case de la classe CaseBateau
+     * @param caseBateau un objet de la classe CaseBateau
+     * @param aCase un objet de la classe Case
+     */
     private void remplacementCasePourCaseBateau(CaseBateau caseBateau, Case aCase) {
         int index = this.cases.indexOf(aCase);
         this.cases.remove(index);
@@ -97,6 +118,10 @@ public class Plateau extends Observable {
         this.cases.add(index, caseBateau);
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<CaseBateau> getCasesBateau() {
         ArrayList<CaseBateau> casesBateau = new ArrayList<>();
         for (Case aCase: this.cases) {
