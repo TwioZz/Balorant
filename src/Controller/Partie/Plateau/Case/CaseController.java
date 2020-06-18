@@ -11,6 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Controleur
+ */
+
 public class CaseController extends JPanel  {
     private Case aCase;
     private OperationArtillerieModel operationArtillerieModel;

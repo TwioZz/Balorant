@@ -1,7 +1,6 @@
 package Controller.MainMenu;
 
 import Models.MainMenuModel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

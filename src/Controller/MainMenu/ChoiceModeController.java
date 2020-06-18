@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Controller de gestion pour les bouttons du choix du mode de jeu
+ * Controleur de gestion pour les bouttons du choix du mode de jeu
  *
  */
 public class ChoiceModeController extends JPanel {
