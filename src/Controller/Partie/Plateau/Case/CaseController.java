@@ -73,8 +73,8 @@ public class CaseController extends JPanel  {
         // Si la case a déjà été touchée
         if (aCase.isTouchee()) {
             if (aCase instanceof CaseBateau) {
-                ArrayList<CaseBateau> caseBateausCoule = plateau.getBateauCoule();
-                if (caseBateausCoule.contains(aCase)) {
+                ArrayList<CaseBateau> caseBateauxCoule = plateau.getBateauCoule();
+                if (caseBateauxCoule.contains(aCase)) {
                     jButtonCase.setBackground(Constants.CASE_COLOR_BATEAU_COULE);
                 } else {
                     jButtonCase.setBackground(Constants.CASE_COLOR_BATEAU_TOUCHEE);

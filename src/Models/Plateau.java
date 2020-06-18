@@ -119,8 +119,8 @@ public class Plateau extends Observable {
     }
 
     /**
-     *
-     * @return
+     *Parcours le plateau et ajoute chaque case de type CaseBateau rencontrée dans une ArrayList de caseBateau
+     * @return l'ArrayList de casesBateau
      */
     public ArrayList<CaseBateau> getCasesBateau() {
         ArrayList<CaseBateau> casesBateau = new ArrayList<>();
@@ -133,10 +133,18 @@ public class Plateau extends Observable {
         return casesBateau;
     }
 
+    /**
+     * Récupère le propriétaire du plateau
+     * @return le propriétaire du plateau
+     */
     public Joueur getControlledBy() {
         return controlledBy;
     }
 
+    /**
+     * Permet de savoir si un bateau a été coulé
+     * @return l'ArrayList de caseBateau
+     */
     public ArrayList<CaseBateau> getBateauCoule() {
         ArrayList<CaseBateau> casesBateauCoule = new ArrayList<>();
         for (Navire navire: this.navires) {
@@ -148,6 +156,10 @@ public class Plateau extends Observable {
         return casesBateauCoule;
     }
 
+    /**
+     * Permet de savoir si tous les bateaux sont coulés
+     * @return le booléen allBateauCoule
+     */
     public boolean isAllBateauCoule() {
         boolean allBateauCoule = true;
 
