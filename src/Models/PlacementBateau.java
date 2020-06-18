@@ -2,6 +2,10 @@ package Models;
 
 import java.util.Observable;
 
+/**
+ * Gère l'orientation des bateaux
+ */
+
 public class PlacementBateau extends Observable {
     private String placement;
 
