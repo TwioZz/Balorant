@@ -1,6 +1,6 @@
 package Controller.Partie;
 
-import Models.Partie;
+import Models.Mode.Partie;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

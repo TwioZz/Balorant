@@ -1,4 +1,4 @@
-package Models;
+package Models.Joueur;
 
 public class Humain extends Joueur {
 

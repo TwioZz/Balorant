@@ -1,36 +1,53 @@
 package View.Partie.PlateauView;
 
-import Models.Case;
-import Models.Partie;
+import Models.Case.Case;
+import Models.Constants;
+import Models.Mode.AlerteRouge;
+import Models.Mode.OperationArtillerie;
+import Models.Mode.OperationArtillerieModel;
+import Models.Mode.Partie;
 import Models.Plateau;
 import View.Partie.PlateauView.CaseView.CaseView;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
 
-public class PlateauView extends JPanel implements Observer {
-    private Plateau plateau;
+public class PlateauView extends JPanel {
 
     public PlateauView(Plateau plateau, Partie partie, boolean plateauAllie) {
-        this.plateau = plateau;
-        this.plateau.addObserver(this);
-        Border blackBorder = BorderFactory.createLineBorder(Color.black);
-        setBorder(blackBorder);
+        setLayout(new BorderLayout());
 
-
-        setLayout(new GridLayout(10, 10));
-
-        for (Case aCase: this.plateau.getCases()) {
-            CaseView caseView = new CaseView(aCase, partie, plateau, plateauAllie);
-            add(caseView);
+        OperationArtillerieModel operationArtillerieModel = new OperationArtillerieModel();
+        JLabel jLabelPlateauType = new JLabel();
+        jLabelPlateauType.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabelPlateauType.setFont(Constants.MAIN_TITLE_FONT);
+        if (plateauAllie) {
+            jLabelPlateauType.setText("Votre plateau :");
+        } else {
+            jLabelPlateauType.setText("Plateau de votre ennemi :");
+            if (partie instanceof OperationArtillerie || partie instanceof AlerteRouge) {
+                add(new OperationArtillerieView(operationArtillerieModel, partie, plateau), BorderLayout.EAST);
+            }
         }
-    }
+        add(jLabelPlateauType, BorderLayout.NORTH);
 
-    @Override
-    public void update(Observable observable, Object o) {
+        JPanel jPanelGrid = new JPanel();
+        jPanelGrid.setLayout(new GridLayout(10,10));
+        Border blackBorder = BorderFactory.createLineBorder(Color.black);
+        jPanelGrid.setBorder(blackBorder);
 
+        for (Case aCase: plateau.getCases()) {
+            CaseView caseView;
+            if (partie instanceof OperationArtillerie || partie instanceof AlerteRouge) {
+                caseView = new CaseView(aCase, partie, plateau, plateauAllie, operationArtillerieModel);
+            } else {
+                caseView = new CaseView(aCase, partie, plateau, plateauAllie);
+            }
+
+            jPanelGrid.add(caseView);
+        }
+
+        add(jPanelGrid, BorderLayout.CENTER);
     }
 }

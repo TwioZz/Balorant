@@ -1,6 +1,7 @@
 package Controller.MainMenu;
 
 import Launcher.Balorant;
+import Models.Constants;
 import Models.MainMenuModel;
 
 import javax.swing.*;
@@ -18,43 +19,46 @@ public class ChoiceModeController extends JPanel {
     public ChoiceModeController(MainMenuModel mainMenuModel) {
         this.mainMenuModel = mainMenuModel;
 
-        JButton batailleNavale = new JButton("Bataille navale");
+        JButton batailleNavale = new JButton(Constants.BATAILLE_NAVALE);
         batailleNavale.addActionListener(
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
                         int nombreDejoueur = mainMenuModel.getNombreDeJoueurHumain();
-                        Balorant.lauchBatailleNavale(nombreDejoueur);
+                        Balorant.lauchPartie(nombreDejoueur, Constants.BATAILLE_NAVALE);
                     }
                 }
         );
 
-        JButton codeRouge = new JButton("Code Rouge");
-        batailleNavale.addActionListener(
+        JButton alerteRouge = new JButton(Constants.ALERTE_ROUGE);
+        alerteRouge.addActionListener(
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-//                        Balorant.lauchCodeRouge();
+                        int nombreDejoueur = mainMenuModel.getNombreDeJoueurHumain();
+                        Balorant.lauchPartie(nombreDejoueur, Constants.ALERTE_ROUGE);
                     }
                 }
         );
 
-        JButton missionArtillerie = new JButton("Mission artillerie");
-        batailleNavale.addActionListener(
+        JButton operationArtillerie = new JButton(Constants.OPERATION_ARTILLERIE);
+        operationArtillerie.addActionListener(
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-//                        Balorant.lauchMissionArtillerie();
+                        int nombreDejoueur = mainMenuModel.getNombreDeJoueurHumain();
+                        Balorant.lauchPartie(nombreDejoueur, Constants.OPERATION_ARTILLERIE);
                     }
                 }
         );
 
-        JButton operationRadar = new JButton("0pération Radar");
-        batailleNavale.addActionListener(
+        JButton missionRadar = new JButton(Constants.MISSION_RADAR);
+        missionRadar.addActionListener(
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-//                        Balorant.lauchOpérationRadar();
+                        int nombreDejoueur = mainMenuModel.getNombreDeJoueurHumain();
+                        Balorant.lauchPartie(nombreDejoueur, Constants.MISSION_RADAR);
                     }
                 }
         );
@@ -62,8 +66,8 @@ public class ChoiceModeController extends JPanel {
 
         this.setLayout(new GridLayout(2, 2));
         this.add(batailleNavale);
-        this.add(codeRouge);
-        this.add(missionArtillerie);
-        this.add(operationRadar);
+        this.add(alerteRouge);
+        this.add(operationArtillerie);
+        this.add(missionRadar);
     }
 }

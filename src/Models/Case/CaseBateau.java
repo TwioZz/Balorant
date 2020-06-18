@@ -1,4 +1,6 @@
-package Models;
+package Models.Case;
+
+import Models.Case.Case;
 
 public class CaseBateau extends Case {
 

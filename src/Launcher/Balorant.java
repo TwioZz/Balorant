@@ -1,7 +1,8 @@
 package Launcher;
 
+import Models.Constants;
 import Models.MainMenuModel;
-import Models.Partie;
+import Models.Mode.*;
 import View.MainMenu.MainMenuView;
 import View.Partie.PartieView;
 
@@ -44,13 +45,23 @@ public class Balorant extends JFrame {
      *
      * @param nombreDejoueur Nombre de joueur humain afin de créer une instance de plateau en fonction
      */
-    public static void lauchBatailleNavale(int nombreDejoueur) {
+    public static void lauchPartie(int nombreDejoueur, String parameterMode) {
         mainMenuJframe.dispose();
 
         Balorant balorantBatailleNavale = new Balorant();
-        Partie partie = new Partie();
-        PartieView partieView = new PartieView(partie);
 
+        Partie partie = null;
+        if (parameterMode.equals(Constants.MISSION_RADAR)) {
+            partie = new BatailleNavale();
+        } else if (parameterMode.equals(Constants.OPERATION_ARTILLERIE)) {
+            partie = new MissionRadar();
+        } else if (parameterMode.equals(Constants.ALERTE_ROUGE)) {
+            partie = new AlerteRouge();
+        } else {
+            partie = new BatailleNavale();
+        }
+
+        PartieView partieView = new PartieView(partie);
         balorantBatailleNavale.add(partieView);
         balorantBatailleNavale.setDefaultCloseOperation(EXIT_ON_CLOSE);
         balorantBatailleNavale.setVisible(true);

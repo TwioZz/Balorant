@@ -1,4 +1,4 @@
-package Models;
+package Models.Case;
 
 import java.util.Observable;
 

@@ -1,9 +1,9 @@
 package Controller.Partie.Plateau.Case;
 
-import Models.Case;
-import Models.CaseBateau;
-import Models.Partie;
-import Models.Plateau;
+import Models.*;
+import Models.Case.Case;
+import Models.Case.CaseBateau;
+import Models.Mode.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,31 +13,55 @@ import java.util.ArrayList;
 
 public class CaseController extends JPanel  {
     private Case aCase;
+    private OperationArtillerieModel operationArtillerieModel;
 
     public CaseController(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie) {
+        contructObjet(aCase, partie, plateau, plateauAllie);
+    }
+
+    public CaseController(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie, OperationArtillerieModel operationArtillerieModel) {
+        this.operationArtillerieModel = operationArtillerieModel;
+        contructObjet(aCase, partie, plateau, plateauAllie);
+    }
+
+    private void contructObjet(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie) {
         this.aCase = aCase;
 
         setLayout(new BorderLayout());
         JButton jButtonCase = new JButton();
-        jButtonCase.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if (!plateau.getControlledBy().isAlreadyShot()) {
-                    aCase.setTouchee(true);
-                    partie.nextTour();
-                    plateau.getControlledBy().setAlreadyShot(true);
+
+        if (this.operationArtillerieModel == null) {
+            jButtonCase.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    if (!plateau.getControlledBy().isAlreadyShot()) {
+                        aCase.setTouchee(true);
+                        partie.nextTour();
+                        plateau.getControlledBy().setAlreadyShot(true);
+                    }
+                    jButtonCase.setEnabled(false);
                 }
-                jButtonCase.setEnabled(false);
-            }
-        });
+            });
+        } else {
+            jButtonCase.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    if (!plateau.getControlledBy().isAlreadyShot()) {
+                        operationArtillerieModel.setCoordYSelected(aCase.getY());
+                    }
+                    jButtonCase.setEnabled(false);
+                }
+            });
+        }
+
 
         jButtonCase.setPreferredSize(new Dimension(25, 25));
-        jButtonCase.setBackground(Color.BLUE);
+        jButtonCase.setBackground(Constants.CASE_COLOR_PAS_TOUCHEE);
 
         // Affichage des bateaux si c'est le plateau allié & désactivation des cases
         if (plateauAllie) {
             if (aCase instanceof CaseBateau) {
-                jButtonCase.setBackground(Color.GRAY);
+                jButtonCase.setBackground(Constants.CASE_COLOR_BATEAU_ALLIE);
             }
             jButtonCase.setEnabled(false);
         }
@@ -47,17 +71,21 @@ public class CaseController extends JPanel  {
             if (aCase instanceof CaseBateau) {
                 ArrayList<CaseBateau> caseBateausCoule = plateau.getBateauCoule();
                 if (caseBateausCoule.contains(aCase)) {
-                    jButtonCase.setBackground(Color.RED);
+                    jButtonCase.setBackground(Constants.CASE_COLOR_BATEAU_COULE);
                 } else {
-                    jButtonCase.setBackground(Color.GREEN);
+                    jButtonCase.setBackground(Constants.CASE_COLOR_BATEAU_TOUCHEE);
                 }
             } else {
-                jButtonCase.setBackground(new Color(4, 2, 52));
+                jButtonCase.setBackground(Constants.CASE_COLOR_TOUCHEE);
             }
             jButtonCase.setEnabled(false);
         }
 
+        // Affichage du bateau le plus proche si le mode le permet et que la case est touchée
+        if ((partie instanceof MissionRadar || partie instanceof AlerteRouge) && aCase.isTouchee()) {
+            jButtonCase.setText(Integer.toString(plateau.getDistanceBateauLePlusProche(aCase)));
+        }
+
         add(jButtonCase, BorderLayout.CENTER);
     }
-
 }

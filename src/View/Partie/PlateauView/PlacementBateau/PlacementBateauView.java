@@ -1,7 +1,7 @@
-package View.Partie.PlateauView;
+package View.Partie.PlateauView.PlacementBateau;
 
 import Controller.Partie.Plateau.PlacementBateauController;
-import Models.Case;
+import Models.Case.Case;
 import Models.Constants;
 import Models.PlacementBateau;
 import Models.Plateau;
@@ -34,23 +34,29 @@ public class PlacementBateauView extends JPanel implements Observer {
             jPanelGridPlacementBateau.add(casePlacementBateau);
         }
 
-        JPanel prochainBateauAPlacer = new JPanel();
-        prochainBateauAPlacer.setLayout(new BorderLayout());
+        JPanel voletDroit = new JPanel();
+        voletDroit.setLayout(new BorderLayout());
+        voletDroit.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JLabel jLabelNextBateauLabel = new JLabel("Prochain Bateau à placer :");
         jLabelNextBateauLabel.setFont(Constants.MAIN_FONT);
         jLabelNextBateauLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        prochainBateauAPlacer.add(jLabelNextBateauLabel, BorderLayout.NORTH);
-        jLabelProchainBateau = new JLabel(plateau.prochainBateauAPlacer().toString());
+        voletDroit.add(jLabelNextBateauLabel, BorderLayout.NORTH);
+
+        JPanel midleVoletDroit = new JPanel();
+        midleVoletDroit.setLayout(new BorderLayout());
+        jLabelProchainBateau = new JLabel(plateau.prochainBateauAPlacer().toString() + " (Taille : " + plateau.prochainBateauAPlacer().getStructure().size() + ")");
         jLabelNextBateauLabel.setFont(Constants.MAIN_FONT);
         jLabelProchainBateau.setHorizontalAlignment(SwingConstants.CENTER);
-        prochainBateauAPlacer.add(jLabelProchainBateau, BorderLayout.CENTER);
-
+        jLabelProchainBateau.setFont(Constants.MAIN_FONT);
+        midleVoletDroit.add(jLabelProchainBateau, BorderLayout.CENTER);
         PlacementBateauController placementBateauController = new PlacementBateauController(this.placementBateau);
-        prochainBateauAPlacer.add(placementBateauController, BorderLayout.SOUTH);
+        midleVoletDroit.add(placementBateauController, BorderLayout.SOUTH);
 
+        voletDroit.add(midleVoletDroit, BorderLayout.CENTER);
+        voletDroit.add(new LegendePlacementBateau(), BorderLayout.SOUTH);
 
         add(jPanelGridPlacementBateau, BorderLayout.CENTER);
-        add(prochainBateauAPlacer, BorderLayout.EAST);
+        add(voletDroit, BorderLayout.EAST);
     }
 
     @Override
@@ -63,7 +69,7 @@ public class PlacementBateauView extends JPanel implements Observer {
         jPanelGridPlacementBateau.updateUI();
 
         try {
-            jLabelProchainBateau.setText(plateau.prochainBateauAPlacer().toString());
+            jLabelProchainBateau.setText(plateau.prochainBateauAPlacer().toString() + " (Taille : " + plateau.prochainBateauAPlacer().getStructure().size() + ")");
         } catch (NullPointerException e) {
             jLabelProchainBateau.setText("Vous avez placé tous les bateaux");
         }

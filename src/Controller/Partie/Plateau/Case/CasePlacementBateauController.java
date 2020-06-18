@@ -1,6 +1,8 @@
 package Controller.Partie.Plateau.Case;
 
 import Models.*;
+import Models.Case.Case;
+import Models.Case.CaseBateau;
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,12 +63,12 @@ public class CasePlacementBateauController extends JPanel {
 
         // Choix de la couleur en fonction de l'etat de la case
         if (aCase instanceof CaseBateau) {
-            jButtonCase.setBackground(Color.GRAY);
+            jButtonCase.setBackground(Constants.CASE_COLOR_BATEAU_ALLIE);
             jButtonCase.setEnabled(false);
         } else if (!jButtonCase.isEnabled()) {
-            jButtonCase.setBackground(new Color(118, 6, 6));
+            jButtonCase.setBackground(Constants.CASE_COLOR_BATEAU_COULE);
         } else {
-            jButtonCase.setBackground(new Color(2, 29, 121));
+            jButtonCase.setBackground(Constants.CASE_COLOR_PAS_TOUCHEE);
         }
 
         add(jButtonCase, BorderLayout.CENTER);

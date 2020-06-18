@@ -1,8 +1,8 @@
 package View.Partie;
 
 import Models.Constants;
-import Models.Joueur;
-import Models.Partie;
+import Models.Joueur.Joueur;
+import Models.Mode.Partie;
 
 import javax.swing.*;
 import java.awt.*;

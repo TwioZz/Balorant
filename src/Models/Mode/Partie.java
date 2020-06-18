@@ -1,6 +1,8 @@
-package Models;
+package Models.Mode;
 
 import Models.Array.LimitedArrayList;
+import Models.Joueur.Joueur;
+import Models.Plateau;
 
 import java.util.ArrayList;
 import java.util.Observable;

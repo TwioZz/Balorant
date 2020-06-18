@@ -1,4 +1,6 @@
-package Models;
+package Models.Joueur;
+
+import Models.Joueur.Joueur;
 
 public class Ordinateur extends Joueur {
 

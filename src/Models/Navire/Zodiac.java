@@ -1,7 +1,7 @@
 package Models.Navire;
 
 import Models.Array.LimitedArrayList;
-import Models.CaseBateau;
+import Models.Case.CaseBateau;
 
 public class Zodiac extends Navire {
     public Zodiac(String nom) {

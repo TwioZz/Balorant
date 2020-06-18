@@ -1,4 +1,4 @@
-package Models;
+package Models.Joueur;
 
 public class Joueur {
     private String nom;

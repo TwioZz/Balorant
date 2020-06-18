@@ -1,6 +1,9 @@
 package Models;
 
 import Models.Array.LimitedArrayList;
+import Models.Case.Case;
+import Models.Case.CaseBateau;
+import Models.Joueur.Joueur;
 import Models.Navire.*;
 
 import java.util.ArrayList;
@@ -130,5 +133,41 @@ public class Plateau extends Observable {
         }
 
         return allBateauCoule;
+    }
+
+    /**
+     * Calcule en fonction d'une case, la distance du bateau le plus proche
+     *
+     * @param aCaseInput case référente afin de trouver le bateau le plus proche
+     * @return distance La distance du bateau le plus proche
+     */
+    public int getDistanceBateauLePlusProche(Case aCaseInput) {
+        int distance = 99;
+
+        for (Case aCase: this.getCases()) {
+            if (aCase instanceof CaseBateau) {
+                int distanceTamp = Math.abs(aCase.getX() - aCaseInput.getX()) + Math.abs(aCase.getY() - aCaseInput.getY());
+                if (distanceTamp < distance) {
+                    distance = distanceTamp;
+                }
+            }
+        }
+        return distance;
+    }
+
+    /**
+     * Retourne toutes les cases dans une ligne
+     * @param line La ligne demandée
+     * @return Les cases de la ligne
+     */
+    public ArrayList<Case> getAllCaseInLine(int line) {
+        ArrayList<Case> casesInLine = new ArrayList<>();
+        for (Case aCase: this.getCases()) {
+            if (aCase.getY() == line) {
+                casesInLine.add(aCase);
+            }
+        }
+
+        return casesInLine;
     }
 }

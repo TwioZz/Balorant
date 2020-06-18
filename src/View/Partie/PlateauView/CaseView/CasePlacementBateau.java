@@ -1,8 +1,7 @@
 package View.Partie.PlateauView.CaseView;
 
 import Controller.Partie.Plateau.Case.CasePlacementBateauController;
-import Models.Case;
-import Models.CaseBateau;
+import Models.Case.Case;
 import Models.PlacementBateau;
 import Models.Plateau;
 

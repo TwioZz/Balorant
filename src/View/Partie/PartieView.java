@@ -2,10 +2,11 @@ package View.Partie;
 
 import Controller.Partie.NextTurnController;
 import Models.Constants;
-import Models.Partie;
+import Models.Mode.Partie;
 import Models.PlacementBateau;
 import Models.Plateau;
-import View.Partie.PlateauView.PlacementBateauView;
+import View.Partie.PlateauView.LegendeView;
+import View.Partie.PlateauView.PlacementBateau.PlacementBateauView;
 import View.Partie.PlateauView.PlateauView;
 import View.Partie.PlateauView.SwitchView;
 
@@ -53,9 +54,9 @@ public class PartieView extends JPanel implements Observer {
                 public void actionPerformed(ActionEvent actionEvent) {
                     removeAll();
                     if (partie.getTour() % 2 == 0) {
-                        changePlayerView(partie.getPlateaux().get(0), partie.getPlateaux().get(1));
-                    } else {
                         changePlayerView(partie.getPlateaux().get(1), partie.getPlateaux().get(0));
+                    } else {
+                        changePlayerView(partie.getPlateaux().get(0), partie.getPlateaux().get(1));
                     }
                     updateUI();
                 }
@@ -66,8 +67,8 @@ public class PartieView extends JPanel implements Observer {
         updateUI();
     }
 
-    private void changePlayerView(Plateau plateauAllie, Plateau plateauEnnemie) {
-        SwitchView switchView = new SwitchView(partie.getTour(), partie.getPlateaux().get(0).getControlledBy().getNom());
+    private void changePlayerView(Plateau plateauAllie, Plateau plateauEnnemi) {
+        SwitchView switchView = new SwitchView(plateauAllie.getControlledBy().getNom());
         JLabel jLabelTimer = new JLabel("3");
         jLabelTimer.setHorizontalAlignment(SwingConstants.CENTER);
         jLabelTimer.setFont(Constants.MAIN_TIMER_FONT);
@@ -103,13 +104,22 @@ public class PartieView extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 removeAll();
+                JPanel lesPlateaux = new JPanel();
+                lesPlateaux.setLayout(new GridLayout(2, 1));
                 plateauAllie.getControlledBy().setAlreadyShot(false);
-                PlateauView plateauViewEnemie = new PlateauView(plateauEnnemie, partie, false);
-                plateauViewEnemie.setPreferredSize(new Dimension(400, 400));
+                PlateauView plateauViewEnnemi = new PlateauView(plateauEnnemi, partie, false);
+                plateauViewEnnemi.setPreferredSize(new Dimension(400, 400));
                 PlateauView plateauViewAllie = new PlateauView(plateauAllie, partie, true);
                 plateauViewAllie.setPreferredSize(new Dimension(400, 400));
-                add(plateauViewEnemie, BorderLayout.CENTER);
-                add(plateauViewAllie, BorderLayout.SOUTH);
+                lesPlateaux.add(plateauViewEnnemi, BorderLayout.CENTER);
+                lesPlateaux.add(plateauViewAllie, BorderLayout.SOUTH);
+
+                JLabel jLabelTourDe = new JLabel("Au tour de " + plateauAllie.getControlledBy().getNom());
+                jLabelTourDe.setFont(Constants.MAIN_TITLE_FONT);
+                jLabelTourDe.setHorizontalAlignment(SwingConstants.CENTER);
+                add(jLabelTourDe, BorderLayout.NORTH);
+                add(lesPlateaux, BorderLayout.CENTER);
+                add(new LegendeView(), BorderLayout.EAST);
                 updateUI();
             }
         });

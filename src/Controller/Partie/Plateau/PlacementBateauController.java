@@ -20,6 +20,7 @@ public class PlacementBateauController extends JPanel {
 
         JRadioButton jRadioButtonVertical = new JRadioButton(Constants.PLACEMENT_VERTICAL);
         jRadioButtonVertical.setHorizontalAlignment(SwingConstants.CENTER);
+        jRadioButtonVertical.setFont(Constants.MAIN_FONT);
         jRadioButtonVertical.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -29,6 +30,7 @@ public class PlacementBateauController extends JPanel {
 
         JRadioButton jRadioButtonHorizontal = new JRadioButton(Constants.PLACEMENT_HORIZONTAL);
         jRadioButtonHorizontal.setHorizontalAlignment(SwingConstants.CENTER);
+        jRadioButtonHorizontal.setFont(Constants.MAIN_FONT);
         jRadioButtonHorizontal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
