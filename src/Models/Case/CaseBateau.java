@@ -2,6 +2,10 @@ package Models.Case;
 
 import Models.Case.Case;
 
+/**
+ * Représente chaques points du bateau
+ */
+
 public class CaseBateau extends Case {
 
     /**
