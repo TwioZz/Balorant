@@ -8,7 +8,7 @@ import Models.Case.CaseBateau;
  */
 public class SousMarin extends Navire {
     /**
-     * Constructuer de la classe Sous marin
+     * Constructuer de la classe Sous-marin
      * @param nom
      */
     public SousMarin(String nom) {
