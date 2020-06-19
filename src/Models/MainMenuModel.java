@@ -21,6 +21,10 @@ public class MainMenuModel extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Getter du nombre de joueur hors IA
+     * @return le nombre de joueur humain
+     */
     public int getNombreDeJoueurHumain() {
         return nombreDeJoueurHumain;
     }

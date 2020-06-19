@@ -5,7 +5,6 @@ import java.util.Observable;
 /**
  * Gère l'orientation des bateaux
  */
-
 public class PlacementBateau extends Observable {
     private String placement;
 
@@ -17,7 +16,7 @@ public class PlacementBateau extends Observable {
     }
 
     /**
-     *
+     * Getter de la position d'un bateau
      * @return L'orientation du bateau
      */
     public String getPlacement() {

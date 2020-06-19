@@ -37,18 +37,32 @@ public abstract class Navire {
         return isCoule;
     }
 
+    /**
+     * @return place un booléen qui indique si le bateau est placé
+     */
     public boolean isPlace() {
         return place;
     }
 
+    /**
+     * //todo
+     * @param place
+     */
     public void setPlace(boolean place) {
         this.place = place;
     }
 
+    /**
+     * @return une ArrayList de CaseBateau qui correspond au bateau
+     */
     public ArrayList<CaseBateau> getStructure() {
         return structure;
     }
 
+    /**
+     * //todo
+     * @return
+     */
     @Override
     public String toString() {
         return this.nom;

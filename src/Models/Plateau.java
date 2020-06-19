@@ -9,12 +9,20 @@ import Models.Navire.*;
 import java.util.ArrayList;
 import java.util.Observable;
 
+/**
+ * Classe Plateau, contient les différentes méthodes associées aux intéractions avec le plateau
+ */
 public class Plateau extends Observable {
     private LimitedArrayList<Case> cases;
     private Joueur controlledBy;
     private LimitedArrayList<Navire> navires;
 
+    /**
+     * Constructeur de la classe Plateau, ajoute les bateaux à l'ArrayList Navires
+     * @param joueur
+     */
     public Plateau(Joueur joueur) {
+        //Création du plateau
         this.cases = new LimitedArrayList<Case>(100);
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -32,6 +40,10 @@ public class Plateau extends Observable {
         this.controlledBy = joueur;
     }
 
+    /**
+     * Getter pour les cases du plateau
+     * @return une LimitedArrayList de case
+     */
     public LimitedArrayList<Case> getCases() {
         return cases;
     }

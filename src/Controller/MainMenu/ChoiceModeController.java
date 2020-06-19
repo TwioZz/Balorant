@@ -17,12 +17,14 @@ public class ChoiceModeController extends JPanel {
     private MainMenuModel mainMenuModel;
 
     /**
-     *  
+     *  Instanciation des jButton et de leur ActionListener pour le choix du mode de jeu
      * @param mainMenuModel coix du mode de jeu
      */
     public ChoiceModeController(MainMenuModel mainMenuModel) {
         this.mainMenuModel = mainMenuModel;
-
+        /**
+         * jButton pour le mode : Bataille Navale
+         */
         JButton batailleNavale = new JButton(Constants.BATAILLE_NAVALE);
         batailleNavale.addActionListener(
                 new ActionListener() {
@@ -33,7 +35,9 @@ public class ChoiceModeController extends JPanel {
                     }
                 }
         );
-
+        /**
+         *  jButton pour le mode : Alerte Rouge
+         */
         JButton alerteRouge = new JButton(Constants.ALERTE_ROUGE);
         alerteRouge.addActionListener(
                 new ActionListener() {
@@ -44,7 +48,9 @@ public class ChoiceModeController extends JPanel {
                     }
                 }
         );
-
+        /**
+         *  jButton pour le mode : Opération Artillerie
+         */
         JButton operationArtillerie = new JButton(Constants.OPERATION_ARTILLERIE);
         operationArtillerie.addActionListener(
                 new ActionListener() {
@@ -55,7 +61,9 @@ public class ChoiceModeController extends JPanel {
                     }
                 }
         );
-
+        /**
+         *  jButton pour le mode : Mission Radar
+         */
         JButton missionRadar = new JButton(Constants.MISSION_RADAR);
         missionRadar.addActionListener(
                 new ActionListener() {

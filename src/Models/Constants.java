@@ -2,6 +2,9 @@ package Models;
 
 import java.awt.*;
 
+/**
+ * Clase pour stocker l'ensemble des constantes du jeu
+ */
 public class Constants {
     public static final String BATAILLE_NAVALE = "Bataille Navale";
     public static final String ALERTE_ROUGE = "Alerte Rouge";
