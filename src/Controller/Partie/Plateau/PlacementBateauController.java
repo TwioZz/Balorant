@@ -8,12 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controlleur de gestion du placement (HORIZONTAL ou VERTICAL) des bateaux
+ */
 public class PlacementBateauController extends JPanel {
-    private PlacementBateau placementBateau;
-
     public PlacementBateauController(PlacementBateau placementBateau) {
-        this.placementBateau = placementBateau;
-
         setLayout(new GridLayout(1, 2));
 
         ButtonGroup buttonGroup = new ButtonGroup();

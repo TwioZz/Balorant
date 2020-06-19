@@ -12,6 +12,9 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Vue pour placer les bateaux
+ */
 public class PlacementBateauView extends JPanel implements Observer {
 
     private Plateau plateau;
@@ -27,6 +30,7 @@ public class PlacementBateauView extends JPanel implements Observer {
 
         setLayout(new BorderLayout());
 
+        // Grille de placement
         jPanelGridPlacementBateau = new JPanel();
         jPanelGridPlacementBateau.setLayout(new GridLayout(10,10));
         for (Case aCase: this.plateau.getCases()) {
@@ -34,6 +38,7 @@ public class PlacementBateauView extends JPanel implements Observer {
             jPanelGridPlacementBateau.add(casePlacementBateau);
         }
 
+        // Volet droit d'information
         JPanel voletDroit = new JPanel();
         voletDroit.setLayout(new BorderLayout());
         voletDroit.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -42,6 +47,7 @@ public class PlacementBateauView extends JPanel implements Observer {
         jLabelNextBateauLabel.setHorizontalAlignment(SwingConstants.CENTER);
         voletDroit.add(jLabelNextBateauLabel, BorderLayout.NORTH);
 
+        // Center du volet droit
         JPanel midleVoletDroit = new JPanel();
         midleVoletDroit.setLayout(new BorderLayout());
         jLabelProchainBateau = new JLabel(plateau.prochainBateauAPlacer().toString() + " (Taille : " + plateau.prochainBateauAPlacer().getStructure().size() + ")");

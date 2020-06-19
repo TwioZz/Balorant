@@ -12,48 +12,61 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * Controleur
+ * Controleur d'une case
  */
-
 public class CaseController extends JPanel  {
-    private Case aCase;
     private OperationArtillerieModel operationArtillerieModel;
 
-    public CaseController(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie) {
-        contructObjet(aCase, partie, plateau, plateauAllie);
-    }
-
+    /**
+     * Constructeur dans le cas d'une opération artillerie
+     * @param aCase La case
+     * @param partie La partie
+     * @param plateau Le plateau
+     * @param plateauAllie Si le plateau est un plateau allié
+     * @param operationArtillerieModel Le model si le mode est opération artillerie ou alerte rouge
+     */
     public CaseController(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie, OperationArtillerieModel operationArtillerieModel) {
         this.operationArtillerieModel = operationArtillerieModel;
         contructObjet(aCase, partie, plateau, plateauAllie);
     }
 
-    private void contructObjet(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie) {
-        this.aCase = aCase;
+    public CaseController(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie) {
+        contructObjet(aCase, partie, plateau, plateauAllie);
+    }
 
+    /**
+     * Constructeur afin de diminuer la duplication (Une ligne en plus dans le cas d'une opération artillerie)
+     * @param aCase La case
+     * @param partie La partie
+     * @param plateau Le plateau
+     * @param plateauAllie Si le plateau est un plateau allié
+     */
+    private void contructObjet(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie) {
         setLayout(new BorderLayout());
         JButton jButtonCase = new JButton();
 
+        // Si le mode n'est pas opération artillerie
         if (this.operationArtillerieModel == null) {
             jButtonCase.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    if (!plateau.getControlledBy().isAlreadyShot()) {
+                    if (!plateau.getControlledBy().isAlreadyShooted()) {
                         aCase.setTouchee(true);
                         partie.nextTour();
-                        plateau.getControlledBy().setAlreadyShot(true);
+                        plateau.getControlledBy().setAlreadyShooted(true);
                     }
                     jButtonCase.setEnabled(false);
                 }
             });
-        } else {
+        }
+        // Si le mode est opération artillerie. Mise à jour du model pour la vue de l'opération artillerie
+        else {
             jButtonCase.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    if (!plateau.getControlledBy().isAlreadyShot()) {
+                    if (!plateau.getControlledBy().isAlreadyShooted()) {
                         operationArtillerieModel.setCoordYSelected(aCase.getY());
                     }
-                    jButtonCase.setEnabled(false);
                 }
             });
         }

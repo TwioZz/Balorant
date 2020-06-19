@@ -9,16 +9,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controlleur d'une case lors du placement des bateaux
+ */
 public class CasePlacementBateauController extends JPanel {
-    private Case aCase;
-    private Plateau plateau;
-    private PlacementBateau placementBateau;
-
     public CasePlacementBateauController(Case aCase, Plateau plateau, PlacementBateau placementBateau) {
-        this.aCase = aCase;
-        this.plateau = plateau;
-        this.placementBateau = placementBateau;
-
         setLayout(new BorderLayout());
         JButton jButtonCase = new JButton();
         jButtonCase.addActionListener(new ActionListener() {
@@ -38,22 +33,22 @@ public class CasePlacementBateauController extends JPanel {
         // Désactivation du boutton quand le bateau ne peut pas etre placé à cause de la bordure ou d'un autre bateau
         if (plateau.prochainBateauAPlacer() != null) {
             int tailleBateauAPlacer = plateau.prochainBateauAPlacer().getStructure().size();
-            if (this.placementBateau.getPlacement().equals(Constants.PLACEMENT_HORIZONTAL)) {
+            if (placementBateau.getPlacement().equals(Constants.PLACEMENT_HORIZONTAL)) {
                 if (aCase.getX() > 10 - tailleBateauAPlacer) {
                     jButtonCase.setEnabled(false);
                 }
-            } else if (this.placementBateau.getPlacement().equals(Constants.PLACEMENT_VERTICAL)) {
+            } else if (placementBateau.getPlacement().equals(Constants.PLACEMENT_VERTICAL)) {
                 if (aCase.getY() > 10 - tailleBateauAPlacer) {
                     jButtonCase.setEnabled(false);
                 }
             }
 
             for (CaseBateau caseBateau: plateau.getCasesBateau()) {
-                if (this.placementBateau.getPlacement().equals(Constants.PLACEMENT_HORIZONTAL)) {
+                if (placementBateau.getPlacement().equals(Constants.PLACEMENT_HORIZONTAL)) {
                     if (aCase.getX() > caseBateau.getX() - tailleBateauAPlacer && aCase.getX() < caseBateau.getX() && aCase.getY() == caseBateau.getY()) {
                         jButtonCase.setEnabled(false);
                     }
-                } else if (this.placementBateau.getPlacement().equals(Constants.PLACEMENT_VERTICAL)) {
+                } else if (placementBateau.getPlacement().equals(Constants.PLACEMENT_VERTICAL)) {
                     if (aCase.getY() > caseBateau.getY() - tailleBateauAPlacer && aCase.getY() < caseBateau.getY() && aCase.getX() == caseBateau.getX()) {
                         jButtonCase.setEnabled(false);
                     }

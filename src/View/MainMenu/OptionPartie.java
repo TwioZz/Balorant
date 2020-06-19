@@ -7,30 +7,24 @@ import Models.MainMenuModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
 
 
 /**
  * Jpanel contenant les options de la partie (IA, Joueur, Mode de jeu)
  *
  */
-public class OptionPartie extends JPanel implements Observer {
-
-    private MainMenuModel mainMenuModel;
-
+public class OptionPartie extends JPanel {
     public OptionPartie(MainMenuModel mainMenuModel) {
-        this.mainMenuModel = mainMenuModel;
-        this.mainMenuModel.addObserver(this);
-
         this.setLayout(new GridLayout(2, 2));
 
+        // Sélection des joueurs
         JLabel jLabelChoiceJoueur = new JLabel("Qui doit s'affronter : ");
         jLabelChoiceJoueur.setFont(Constants.MAIN_FONT);
         jLabelChoiceJoueur.setHorizontalAlignment(JLabel.CENTER);
         this.add(jLabelChoiceJoueur);
         this.add(new NombreDeJoueurController(mainMenuModel));
 
+        // Mode de jeu
         JLabel jLabelChoiceMode = new JLabel("Choisissez un mode :");
         jLabelChoiceMode.setFont(Constants.MAIN_FONT);
         jLabelChoiceMode.setHorizontalAlignment(JLabel.CENTER);
@@ -38,11 +32,5 @@ public class OptionPartie extends JPanel implements Observer {
         this.add(new ChoiceModeController(mainMenuModel));
 
         this.setPreferredSize(new Dimension(400, 400));
-    }
-
-
-    @Override
-    public void update(Observable observable, Object o) {
-
     }
 }

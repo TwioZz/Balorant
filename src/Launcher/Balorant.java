@@ -1,6 +1,9 @@
 package Launcher;
 
 import Models.Constants;
+import Models.Joueur.Humain;
+import Models.Joueur.Joueur;
+import Models.Joueur.Ordinateur;
 import Models.MainMenuModel;
 import Models.Mode.*;
 import View.MainMenu.MainMenuView;
@@ -43,22 +46,30 @@ public class Balorant extends JFrame {
     /**
      * Ferme le menu et lance une partie de bataille navale
      *
-     * @param nombreDejoueur Nombre de joueur humain afin de créer une instance de plateau en fonction
+     * @param nombreDejoueurHumain Nombre de joueur humain afin de créer une instance de plateau en fonction
      */
-    public static void lauchPartie(int nombreDejoueur, String parameterMode) {
+    public static void lauchPartie(int nombreDejoueurHumain, String parameterMode) {
         mainMenuJframe.dispose();
 
         Balorant balorantBatailleNavale = new Balorant();
 
-        Partie partie = null;
-        if (parameterMode.equals(Constants.MISSION_RADAR)) {
-            partie = new MissionRadar();
-        } else if (parameterMode.equals(Constants.OPERATION_ARTILLERIE)) {
-            partie = new OperationArtillerie();
-        } else if (parameterMode.equals(Constants.ALERTE_ROUGE)) {
-            partie = new AlerteRouge();
-        } else {
-            partie = new BatailleNavale();
+        Joueur joueur1 = nombreDejoueurHumain > 0 ? new Humain("Joueur 1") : new Ordinateur("Ordinateur 1", 0);
+        Joueur joueur2 = nombreDejoueurHumain > 1 ? new Humain("Joueur 2") : new Ordinateur("Ordinateur 2", 0);
+
+        Partie partie;
+        switch (parameterMode) {
+            case Constants.MISSION_RADAR:
+                partie = new MissionRadar(joueur1, joueur2);
+                break;
+            case Constants.OPERATION_ARTILLERIE:
+                partie = new OperationArtillerie(joueur1, joueur2);
+                break;
+            case Constants.ALERTE_ROUGE:
+                partie = new AlerteRouge(joueur1, joueur2);
+                break;
+            default:
+                partie = new BatailleNavale(joueur1, joueur2);
+                break;
         }
 
         PartieView partieView = new PartieView(partie);

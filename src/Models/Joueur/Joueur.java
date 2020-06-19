@@ -10,7 +10,7 @@ public class Joueur {
 
     /**
      * Defini le nom du joueur par
-     * @param nom
+     * @param nom Le nom du joueur
      */
     public Joueur(String nom) {
         this.alreadyShot = false;
@@ -18,7 +18,6 @@ public class Joueur {
     }
 
     /**
-     *
      * @return le nom du joueur
      */
     public String getNom() {
@@ -26,27 +25,17 @@ public class Joueur {
     }
 
     /**
-     *
-     * @return si le joueur est en train de tirerou non
+     * @return si le joueur s'est déjà fait tirer dessus
      */
-    public boolean isAlreadyShot() {
+    public boolean isAlreadyShooted() {
         return alreadyShot;
     }
 
     /**
-     * Informe que le joueur est en train de tirer
-     * @param alreadyShot
+     * Informe si le joueur s'est déjà fait tirer dessus
+     * @param alreadyShoted si le joueur s'est déjà fait tirer dessus
      */
-    public void setAlreadyShot(boolean alreadyShot) {
-
-        this.alreadyShot = alreadyShot;
-    }
-
-    /**
-     * Change le nom du joueur par
-     * @param nom
-     */
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setAlreadyShooted(boolean alreadyShoted) {
+        this.alreadyShot = alreadyShoted;
     }
 }

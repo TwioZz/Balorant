@@ -10,11 +10,7 @@ import java.awt.event.ActionListener;
  * Controleur de la sélection de joueur humain
  */
 public class NombreDeJoueurController extends JPanel {
-    MainMenuModel mainMenuModel;
-
     public NombreDeJoueurController(MainMenuModel mainMenuModel) {
-        super();
-        this.mainMenuModel= new MainMenuModel();
         this.setLayout(new GridBagLayout());
 
         String[] modeJoueur = new String[]{
@@ -26,9 +22,7 @@ public class NombreDeJoueurController extends JPanel {
 
         JComboBox<String> nombreJoueurJComboBox = new JComboBox<>(modeJoueur);
         nombreJoueurJComboBox.addActionListener(new ActionListener() {
-            /**
-             * Modifie le nombre de joueur humain en fonction de la sélection
-             */
+            // Modifie le nombre de joueur humain en fonction de la sélection
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 mainMenuModel.setNombreDeJoueurHumain(nombreJoueurJComboBox.getSelectedIndex());

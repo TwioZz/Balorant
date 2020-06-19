@@ -5,6 +5,9 @@ import Models.Constants;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Vue de la légende lors du placement des bateaux
+ */
 public class LegendePlacementBateau extends JPanel {
 
     public LegendePlacementBateau() {
@@ -17,6 +20,7 @@ public class LegendePlacementBateau extends JPanel {
         JPanel jPanelLegendeColor = new JPanel();
         jPanelLegendeColor.setLayout(new GridLayout(2, 2));
 
+        // Bateau plaçable
         JButton jButtonCaseBateauPlacable = new JButton();
         jButtonCaseBateauPlacable.setBackground(Constants.CASE_COLOR_BATEAU_PLACABLE);
         jButtonCaseBateauPlacable.setPreferredSize(new Dimension(25, 25));
@@ -27,7 +31,7 @@ public class LegendePlacementBateau extends JPanel {
         jPanelLegendeColor.add(jButtonCaseBateauPlacable);
         jPanelLegendeColor.add(jLabelCaseBateauPlacable);
 
-
+        // Bateau non plaçable
         JButton jButtonCaseBateauNonPlacable = new JButton();
         jButtonCaseBateauNonPlacable.setBackground(Constants.CASE_COLOR_BATEAU_NON_PLACABLE);
         jButtonCaseBateauNonPlacable.setPreferredSize(new Dimension(25, 25));

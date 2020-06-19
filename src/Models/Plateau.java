@@ -19,18 +19,18 @@ public class Plateau extends Observable {
 
     /**
      * Constructeur de la classe Plateau, ajoute les bateaux à l'ArrayList Navires
-     * @param joueur
+     * @param joueur Le joueur controlant le plateau
      */
     public Plateau(Joueur joueur) {
         //Création du plateau
-        this.cases = new LimitedArrayList<Case>(100);
+        this.cases = new LimitedArrayList<>(100);
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 this.cases.add(new Case(false, j, i));
             }
         }
 
-        this.navires = new LimitedArrayList<Navire>(5);
+        this.navires = new LimitedArrayList<>(5);
         this.navires.add(new PorteAvions("Porte-Avions"));
         this.navires.add(new SousMarin("Sous-Marin"));
         this.navires.add(new Cuirasse("Cuirassé 1"));

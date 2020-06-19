@@ -13,6 +13,9 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
+/**
+ * Vue contenant un seul plateau
+ */
 public class PlateauView extends JPanel {
 
     public PlateauView(Plateau plateau, Partie partie, boolean plateauAllie) {
@@ -26,12 +29,14 @@ public class PlateauView extends JPanel {
             jLabelPlateauType.setText("Votre plateau :");
         } else {
             jLabelPlateauType.setText("Plateau de votre ennemi :");
+            // Ajout de la view d'OperationArtillerie si le mode le requière
             if (partie instanceof OperationArtillerie || partie instanceof AlerteRouge) {
                 add(new OperationArtillerieView(operationArtillerieModel, partie, plateau), BorderLayout.EAST);
             }
         }
         add(jLabelPlateauType, BorderLayout.NORTH);
 
+        // Grille
         JPanel jPanelGrid = new JPanel();
         jPanelGrid.setLayout(new GridLayout(10,10));
         Border blackBorder = BorderFactory.createLineBorder(Color.black);

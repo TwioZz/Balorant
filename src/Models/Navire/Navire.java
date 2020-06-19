@@ -45,8 +45,8 @@ public abstract class Navire {
     }
 
     /**
-     * //todo
-     * @param place
+     * setter du placement du bateau
+     * @param place si le bateau est placé
      */
     public void setPlace(boolean place) {
         this.place = place;
@@ -60,8 +60,8 @@ public abstract class Navire {
     }
 
     /**
-     * //todo
-     * @return
+     * to string du bateau
+     * @return Le nom du bateau
      */
     @Override
     public String toString() {

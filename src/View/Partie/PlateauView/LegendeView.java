@@ -5,6 +5,9 @@ import Models.Constants;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Vue affichant la légende
+ */
 public class LegendeView extends JPanel {
 
     public LegendeView() {
@@ -17,6 +20,7 @@ public class LegendeView extends JPanel {
         JPanel jPanelLegendeColor = new JPanel();
         jPanelLegendeColor.setLayout(new GridLayout(5, 2));
 
+        // Cas Eau non touchée
         JButton jButtonCasePasTouchee = new JButton();
         jButtonCasePasTouchee.setBackground(Constants.CASE_COLOR_PAS_TOUCHEE);
         jButtonCasePasTouchee.setPreferredSize(new Dimension(25, 25));
@@ -27,6 +31,7 @@ public class LegendeView extends JPanel {
         jPanelLegendeColor.add(jButtonCasePasTouchee);
         jPanelLegendeColor.add(jLabelCasePasTouchee);
 
+        // Cas Eau touchée
         JButton jButtonCaseTouchee = new JButton();
         jButtonCaseTouchee.setBackground(Constants.CASE_COLOR_TOUCHEE);
         jButtonCaseTouchee.setPreferredSize(new Dimension(25, 25));
@@ -37,6 +42,7 @@ public class LegendeView extends JPanel {
         jPanelLegendeColor.add(jButtonCaseTouchee);
         jPanelLegendeColor.add(jLabelCaseTouchee);
 
+        // Cas bateau allié
         JButton jButtonBateauAllie = new JButton();
         jButtonBateauAllie.setBackground(Constants.CASE_COLOR_BATEAU_ALLIE);
         jButtonBateauAllie.setPreferredSize(new Dimension(25, 25));
@@ -47,6 +53,7 @@ public class LegendeView extends JPanel {
         jPanelLegendeColor.add(jButtonBateauAllie);
         jPanelLegendeColor.add(jLabelBateauAllie);
 
+        // Cas bateau touché
         JButton jButtonBateauTouchee = new JButton();
         jButtonBateauTouchee.setBackground(Constants.CASE_COLOR_BATEAU_TOUCHEE);
         jButtonBateauTouchee.setPreferredSize(new Dimension(25, 25));
@@ -57,6 +64,7 @@ public class LegendeView extends JPanel {
         jPanelLegendeColor.add(jButtonBateauTouchee);
         jPanelLegendeColor.add(jLabelBateauTouchee);
 
+        // Cas bateau coulé
         JButton jButtonBateauCoule = new JButton();
         jButtonBateauCoule.setBackground(Constants.CASE_COLOR_BATEAU_COULE);
         jButtonBateauCoule.setPreferredSize(new Dimension(25, 25));

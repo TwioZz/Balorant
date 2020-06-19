@@ -11,6 +11,9 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Vue représentant une case
+ */
 public class CaseView extends JPanel implements Observer {
 
     private Case aCase; // case is a reserved word
@@ -19,15 +22,36 @@ public class CaseView extends JPanel implements Observer {
     private Partie partie;
     private OperationArtillerieModel operationArtillerieModel;
 
-    public CaseView(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie) {
-        constructObject(aCase, partie, plateau, plateauAllie);
-    }
-
+    /**
+     * Constructeur dans le cas d'une opération artillerie
+     * @param aCase La case
+     * @param partie La partie en cours
+     * @param plateau Le plateau
+     * @param plateauAllie Est-ce que le plateau est allié ou non
+     */
     public CaseView(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie, OperationArtillerieModel operationArtillerieModel) {
         this.operationArtillerieModel = operationArtillerieModel;
         constructObject(aCase, partie, plateau, plateauAllie);
     }
 
+    /**
+     * Constructeur dans les autres cas
+     * @param aCase La case
+     * @param partie La partie en cours
+     * @param plateau Le plateau
+     * @param plateauAllie Est-ce que le plateau est allié ou non
+     */
+    public CaseView(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie) {
+        constructObject(aCase, partie, plateau, plateauAllie);
+    }
+
+    /**
+     * Méthode constructeur afin de réduire la duplication (Ajout d'une ligne dans la cas d'une opération artillerie)
+     * @param aCase La case
+     * @param partie La partie en cours
+     * @param plateau Le plateau
+     * @param plateauAllie Est-ce que le plateau est allié ou non
+     */
     private void constructObject(Case aCase, Partie partie, Plateau plateau, boolean plateauAllie) {
         this.plateauAllie = plateauAllie;
         this.partie = partie;

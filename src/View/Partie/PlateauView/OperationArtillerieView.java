@@ -2,7 +2,6 @@ package View.Partie.PlateauView;
 
 import Models.Case.Case;
 import Models.Constants;
-import Models.Mode.OperationArtillerie;
 import Models.Mode.OperationArtillerieModel;
 import Models.Mode.Partie;
 import Models.Plateau;
@@ -15,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Vue de l'opération artillerie (Sélection des coordonnées)
+ */
 public class OperationArtillerieView extends JPanel implements Observer {
 
     OperationArtillerieModel operationArtillerieModel;
@@ -37,6 +39,7 @@ public class OperationArtillerieView extends JPanel implements Observer {
         opArtTir.setHorizontalAlignment(SwingConstants.CENTER);
         add(opArtTir, BorderLayout.NORTH);
 
+        // Jlabel d'attente de sélection
         coord.setText("Veuillez selectionner une ligne");
         coord.setFont(Constants.MAIN_FONT);
         coord.setHorizontalAlignment(SwingConstants.CENTER);
@@ -47,27 +50,33 @@ public class OperationArtillerieView extends JPanel implements Observer {
         jButtonTirer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                // Fin des timers quand le tir est effectué
                 for (Timer timer: timers) {
                     timer.stop();
                 }
                 operationArtillerieModel.getCaseSelected().setTouchee(true);
                 partie.nextTour();
-                plateau.getControlledBy().setAlreadyShot(true);
+                plateau.getControlledBy().setAlreadyShooted(true);
                 jButtonTirer.setEnabled(false);
             }
         });
         add(jButtonTirer, BorderLayout.SOUTH);
     }
 
+    /**
+     * Quand une ligne est sélectionnée
+     */
     @Override
     public void update(Observable observable, Object o) {
         this.casesInLine = plateau.getAllCaseInLine(this.operationArtillerieModel.getCoordYSelected());
+        // Arret des timers déjà en cours
         for (Timer timer: timers) {
             timer.stop();
         }
         this.timers = new ArrayList<>();
         this.jButtonTirer.setEnabled(true);
 
+        // Génération des timers sur les cases "tirable" sur la ligne sélectionnée
         int baseDelay = 500;
         for (Case aCase: casesInLine) {
             if (!aCase.isTouchee()) {
@@ -84,7 +93,7 @@ public class OperationArtillerieView extends JPanel implements Observer {
             }
         }
 
-        // Relance tous les timer quand le dernier arrive à bout
+        // Relance tous les timers quand le dernier arrive à bout
         timers.get(timers.size() - 1).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -94,6 +103,7 @@ public class OperationArtillerieView extends JPanel implements Observer {
             }
         });
 
+        // Commencement de tous les timers
         for (Timer timer: timers) {
             timer.start();
         }

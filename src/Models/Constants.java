@@ -3,7 +3,7 @@ package Models;
 import java.awt.*;
 
 /**
- * Clase pour stocker l'ensemble des constantes du jeu
+ * Classe pour stocker l'ensemble des constantes du jeu
  */
 public class Constants {
     public static final String BATAILLE_NAVALE = "Bataille Navale";
@@ -11,7 +11,7 @@ public class Constants {
     public static final String OPERATION_ARTILLERIE = "Operation Artillerie";
     public static final String MISSION_RADAR = "Mission Radar";
 
-    public static final Font MAIN_TIMER_FONT = new Font("Serif", Font.BOLD, 96);
+    public static final Font MAIN_BIG_TITLE_FONT = new Font("Serif", Font.BOLD, 96);
     public static final Font MAIN_TITLE_FONT = new Font("Serif", Font.BOLD, 48);
     public static final Font MAIN_FONT = new Font("Serif", Font.BOLD, 24);
 
