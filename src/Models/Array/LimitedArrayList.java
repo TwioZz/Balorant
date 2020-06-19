@@ -2,6 +2,10 @@ package Models.Array;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @param <T>
+ */
 public class LimitedArrayList<T> extends ArrayList<T> {
     private int limit;
 
