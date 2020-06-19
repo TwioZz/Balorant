@@ -7,10 +7,16 @@ import Models.Plateau;
 import java.util.ArrayList;
 import java.util.Observable;
 
+/**
+ * Modèle de la partie en cours
+ */
 public class Partie extends Observable {
     private LimitedArrayList<Plateau> plateaux;
     private int tour;
 
+    /**
+     * Commence la partie en créeant les 2 joueurs
+     */
     public Partie() {
         this.tour = 1;
         this.plateaux = new LimitedArrayList<>(2);
