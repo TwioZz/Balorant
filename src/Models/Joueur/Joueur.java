@@ -4,7 +4,7 @@ package Models.Joueur;
  * Joueur qui joue actuellement
  */
 
-public class Joueur {
+public abstract class Joueur {
     private String nom;
     private boolean alreadyShot;
 
