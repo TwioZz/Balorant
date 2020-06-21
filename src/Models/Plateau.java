@@ -52,7 +52,7 @@ public class Plateau extends Observable {
      * Récupère le premier navire qui n'est pas placé
      * @return le premier navire qui n'est pas placé
      */
-    public Navire prochainBateauAPlacer() {
+    public Navire getProchainBateauAPlacer() {
         for (Navire navire: this.navires) {
             if (!navire.isPlace()) {
                 return navire;
@@ -131,7 +131,7 @@ public class Plateau extends Observable {
     }
 
     /**
-     *Parcours le plateau et ajoute chaque case de type CaseBateau rencontrée dans une ArrayList de caseBateau
+     * Parcours le plateau et ajoute chaque case de type CaseBateau rencontrée dans une ArrayList de caseBateau
      * @return l'ArrayList de casesBateau
      */
     public ArrayList<CaseBateau> getCasesBateau() {

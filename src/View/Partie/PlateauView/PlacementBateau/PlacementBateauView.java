@@ -50,7 +50,7 @@ public class PlacementBateauView extends JPanel implements Observer {
         // Center du volet droit
         JPanel midleVoletDroit = new JPanel();
         midleVoletDroit.setLayout(new BorderLayout());
-        jLabelProchainBateau = new JLabel(plateau.prochainBateauAPlacer().toString() + " (Taille : " + plateau.prochainBateauAPlacer().getStructure().size() + ")");
+        jLabelProchainBateau = new JLabel(plateau.getProchainBateauAPlacer().toString() + " (Taille : " + plateau.getProchainBateauAPlacer().getStructure().size() + ")");
         jLabelNextBateauLabel.setFont(Constants.MAIN_FONT);
         jLabelProchainBateau.setHorizontalAlignment(SwingConstants.CENTER);
         jLabelProchainBateau.setFont(Constants.MAIN_FONT);
@@ -75,7 +75,7 @@ public class PlacementBateauView extends JPanel implements Observer {
         jPanelGridPlacementBateau.updateUI();
 
         try {
-            jLabelProchainBateau.setText(plateau.prochainBateauAPlacer().toString() + " (Taille : " + plateau.prochainBateauAPlacer().getStructure().size() + ")");
+            jLabelProchainBateau.setText(plateau.getProchainBateauAPlacer().toString() + " (Taille : " + plateau.getProchainBateauAPlacer().getStructure().size() + ")");
         } catch (NullPointerException e) {
             jLabelProchainBateau.setText("Vous avez placé tous les bateaux");
         }

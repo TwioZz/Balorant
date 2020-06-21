@@ -56,7 +56,7 @@ public class OperationArtillerieView extends JPanel implements Observer {
                 }
                 operationArtillerieModel.getCaseSelected().setTouchee(true);
                 partie.nextTour();
-                plateau.getControlledBy().setAlreadyShooted(true);
+                plateau.getControlledBy().setAlreadyGotShot(true);
                 jButtonTirer.setEnabled(false);
             }
         });

@@ -10,6 +10,7 @@ import Models.Plateau;
 import View.Partie.PlateauView.LegendeView;
 import View.Partie.PlateauView.PlacementBateau.PlacementBateauView;
 import View.Partie.PlateauView.PlateauxView;
+import View.Partie.PlateauView.Transition.AttentePlacementBateauOrdinateur;
 import View.Partie.PlateauView.Transition.AttenteTirOrdinateur;
 import View.Partie.PlateauView.Transition.SwitchView;
 
@@ -38,10 +39,17 @@ public class PartieView extends JPanel implements Observer {
         jLabelTir.setHorizontalAlignment(SwingConstants.CENTER);
         add(jLabelTir, BorderLayout.NORTH);
 
+        Plateau plateauAllie = partie.getPlateaux().get(0);
         PlacementBateau placementBateau = new PlacementBateau();
-        PlacementBateauView placementBateauView = new PlacementBateauView(partie.getPlateaux().get(0), placementBateau);
+        PlacementBateauView placementBateauView = new PlacementBateauView(plateauAllie, placementBateau);
         add(placementBateauView, BorderLayout.CENTER);
         add(new NextTurnController(partie), BorderLayout.SOUTH);
+
+        // Dans le cas où les deux ia se battent, rien à cacher
+        if (partie.getPlateaux().get(0).getControlledBy() instanceof Ordinateur) {
+            ((Ordinateur) plateauAllie.getControlledBy()).placerBateaux(plateauAllie);
+            partie.nextTour();
+        }
     }
 
     @Override
@@ -49,9 +57,18 @@ public class PartieView extends JPanel implements Observer {
         // Les deux premiers tour sont consacrés au placement des bateaux
         if (partie.getTour() < 3) {
             remove(1); // Suppression du BorderLayout.center
-            PlacementBateau placementBateau = new PlacementBateau();
-            PlacementBateauView placementBateauView = new PlacementBateauView(partie.getPlateaux().get(1), placementBateau);
-            add(placementBateauView, BorderLayout.CENTER);
+            // Ecran d'attente quand l'ordinateur place ses bateaux
+            if (partie.getPlateaux().get(1).getControlledBy() instanceof Ordinateur) {
+                AttentePlacementBateauOrdinateur attentePlacementBateauOrdinateur = new AttentePlacementBateauOrdinateur();
+                add(attentePlacementBateauOrdinateur, BorderLayout.CENTER);
+                Plateau plateauAllie = partie.getPlateaux().get(1);
+                ((Ordinateur) plateauAllie.getControlledBy()).placerBateaux(plateauAllie);
+                partie.nextTour();
+            } else {
+                PlacementBateau placementBateau = new PlacementBateau();
+                PlacementBateauView placementBateauView = new PlacementBateauView(partie.getPlateaux().get(1), placementBateau);
+                add(placementBateauView, BorderLayout.CENTER);
+            }
         }
         // Condition de fin de la partie
         else if (partie.isPartieTerminee()) {
@@ -87,7 +104,7 @@ public class PartieView extends JPanel implements Observer {
      */
     private void changePlayerView(Plateau plateauAllie, Plateau plateauEnnemi) {
         // Reset du plateau afin d'autoriser le tir
-        plateauEnnemi.getControlledBy().setAlreadyShooted(false);
+        plateauEnnemi.getControlledBy().setAlreadyGotShot(false);
 
         // Cas Humain contre humain, Il faut cacher le plateau, le temps qu'un joueur détourne le regard
         if (plateauAllie.getControlledBy() instanceof Humain && plateauEnnemi.getControlledBy() instanceof Humain) {
@@ -146,7 +163,9 @@ public class PartieView extends JPanel implements Observer {
             affichageDesPlateaux(plateauEnnemi, plateauAllie);
 
             Ordinateur ordinateur = (Ordinateur) plateauAllie.getControlledBy();
-            ordinateur.doTir(plateauEnnemi, partie);
+            ordinateur.doTir(plateauEnnemi);
+            plateauEnnemi.getControlledBy().setAlreadyGotShot(true);
+            partie.nextTour();
         }
         // Cas d'un ordinateur qui tire sur un humain, affichage d'un écran d'attente et tir de l'ordinateur
         else if (plateauAllie.getControlledBy() instanceof Ordinateur && plateauEnnemi.getControlledBy() instanceof Humain){
@@ -155,7 +174,9 @@ public class PartieView extends JPanel implements Observer {
             updateUI();
 
             Ordinateur ordinateur = (Ordinateur) plateauAllie.getControlledBy();
-            ordinateur.doTir(plateauEnnemi, partie);
+            ordinateur.doTir(plateauEnnemi);
+            plateauEnnemi.getControlledBy().setAlreadyGotShot(true);
+            partie.nextTour();
         }
         // Cas Humain qui doit tirer sur un ordinateur, pas d'affichage de décompte (Rien à cacher)
         else {

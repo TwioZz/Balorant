@@ -50,10 +50,10 @@ public class CaseController extends JPanel  {
             jButtonCase.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    if (!plateau.getControlledBy().isAlreadyShooted()) {
+                    if (!plateau.getControlledBy().isAlreadyGotShot()) {
                         aCase.setTouchee(true);
                         partie.nextTour();
-                        plateau.getControlledBy().setAlreadyShooted(true);
+                        plateau.getControlledBy().setAlreadyGotShot(true);
                     }
                     jButtonCase.setEnabled(false);
                 }
@@ -64,7 +64,7 @@ public class CaseController extends JPanel  {
             jButtonCase.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    if (!plateau.getControlledBy().isAlreadyShooted()) {
+                    if (!plateau.getControlledBy().isAlreadyGotShot()) {
                         operationArtillerieModel.setCoordYSelected(aCase.getY());
                     }
                 }

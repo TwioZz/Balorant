@@ -19,20 +19,20 @@ public class CasePlacementBateauController extends JPanel {
         jButtonCase.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                plateau.placementDuNavire(plateau.prochainBateauAPlacer(), aCase, placementBateau.getPlacement());
+                plateau.placementDuNavire(plateau.getProchainBateauAPlacer(), aCase, placementBateau.getPlacement());
             }
         });
 
         jButtonCase.setPreferredSize(new Dimension(25, 25));
 
         // Désactivation du jbutton quand tous les bateaux sont placés
-        if (plateau.prochainBateauAPlacer() == null) {
+        if (plateau.getProchainBateauAPlacer() == null) {
             jButtonCase.setEnabled(false);
         }
 
         // Désactivation du boutton quand le bateau ne peut pas etre placé à cause de la bordure ou d'un autre bateau
-        if (plateau.prochainBateauAPlacer() != null) {
-            int tailleBateauAPlacer = plateau.prochainBateauAPlacer().getStructure().size();
+        if (plateau.getProchainBateauAPlacer() != null) {
+            int tailleBateauAPlacer = plateau.getProchainBateauAPlacer().getStructure().size();
             if (placementBateau.getPlacement().equals(Constants.PLACEMENT_HORIZONTAL)) {
                 if (aCase.getX() > 10 - tailleBateauAPlacer) {
                     jButtonCase.setEnabled(false);

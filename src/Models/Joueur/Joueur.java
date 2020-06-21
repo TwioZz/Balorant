@@ -27,7 +27,7 @@ public abstract class Joueur {
     /**
      * @return si le joueur s'est déjà fait tirer dessus
      */
-    public boolean isAlreadyShooted() {
+    public boolean isAlreadyGotShot() {
         return alreadyShot;
     }
 
@@ -35,7 +35,7 @@ public abstract class Joueur {
      * Informe si le joueur s'est déjà fait tirer dessus
      * @param alreadyShoted si le joueur s'est déjà fait tirer dessus
      */
-    public void setAlreadyShooted(boolean alreadyShoted) {
+    public void setAlreadyGotShot(boolean alreadyShoted) {
         this.alreadyShot = alreadyShoted;
     }
 }
