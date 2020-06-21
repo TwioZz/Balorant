@@ -43,10 +43,18 @@ public abstract class Partie extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Détermine si la partie est terminée
+     * @return le booléen isAllBateauCoule du joueur gagnant
+     */
     public boolean isPartieTerminee() {
         return this.plateaux.get(0).isAllBateauCoule() || this.plateaux.get(1).isAllBateauCoule();
     }
 
+    /**
+     * Détermine le joueur gagnant
+     * @return le joueur gagnant, ou null si la partie n'est pas finie
+     */
     public Joueur getJoueurGagnant() {
         if (this.plateaux.get(0).isAllBateauCoule()) {
             return this.plateaux.get(1).getControlledBy();
