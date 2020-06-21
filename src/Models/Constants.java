@@ -24,6 +24,6 @@ public class Constants {
     public static final Color CASE_COLOR_PAS_TOUCHEE = new Color(2, 29, 121);
     public static final Color CASE_COLOR_TOUCHEE = new Color(4, 2, 52);
     public static final Color CASE_COLOR_BATEAU_ALLIE = new Color(69, 69, 69);
-    public static final Color CASE_COLOR_BATEAU_TOUCHEE = new Color(2, 73, 13);
+    public static final Color CASE_COLOR_BATEAU_TOUCHEE = new Color(173, 84, 6);
     public static final Color CASE_COLOR_BATEAU_COULE = new Color(118, 6, 6);
 }
