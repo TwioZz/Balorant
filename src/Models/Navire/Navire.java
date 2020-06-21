@@ -5,6 +5,9 @@ import Models.Case.CaseBateau;
 
 import java.util.ArrayList;
 
+/**
+ * Classe mérè non instancialbe d'un bateau
+ */
 public abstract class Navire {
     protected LimitedArrayList<CaseBateau> structure;
     private boolean place;

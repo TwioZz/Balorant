@@ -2,6 +2,9 @@ package Models.Mode;
 
 import Models.Joueur.Joueur;
 
+/**
+ * Mode de partie AlertRouge mélange entre Opération Arti & Mission Radar
+ */
 public class AlerteRouge extends Partie {
     /**
      * Commence la partie en créeant les 2 plateaux des joueurs

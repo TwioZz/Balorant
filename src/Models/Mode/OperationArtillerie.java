@@ -2,6 +2,9 @@ package Models.Mode;
 
 import Models.Joueur.Joueur;
 
+/**
+ * Pire mode de jeu, sélection des coordonnées en commencant par la colonne
+ */
 public class OperationArtillerie extends Partie {
     /**
      * Commence la partie en créeant les 2 plateaux des joueurs

@@ -2,6 +2,9 @@ package Models.Mode;
 
 import Models.Joueur.Joueur;
 
+/**
+ * Mode de partie indiquant la distance du bateau le plus proche lors d'un tir
+ */
 public class MissionRadar extends Partie {
     /**
      * Commence la partie en créeant les 2 plateaux des joueurs
