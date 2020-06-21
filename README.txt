@@ -12,7 +12,7 @@ Pour compiler et exécuter le projet :
     - cd ./build
     - java Main
 
-
+    Description des classes à partir de src
     Main.java | Classe de lancement de l'application
 
     - Launcher | Launcher de le l'application, la jframe du menu et du jeu
